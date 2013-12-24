@@ -55,7 +55,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
 
     $scope.updateTaskOnEnter=function(e,TID)
     {
-        
+        TaskName='inputTaskName'+TID;
         ModData=
         {
             "TID":TID,
@@ -65,6 +65,10 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
         };
         console.log(ModData);
         $scope.updateTask(ModData);
+
+
+        //Make New Task
+        // $scope.createNewTask();
     }
     
     //To update the task whenever return key is pressed for a task
