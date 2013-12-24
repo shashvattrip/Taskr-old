@@ -12,7 +12,7 @@ myapp.factory('JSONData', function()
 	"fol":[1,2,3,4,5],
 	"star":1,
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	
@@ -24,7 +24,7 @@ myapp.factory('JSONData', function()
 	"fol":[1,2],
 	"star":0,
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 },
 {
 	"PID":2,
@@ -35,7 +35,7 @@ myapp.factory('JSONData', function()
 	"fol":[1,3,4,5],
 	"star":1,
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":2,
@@ -46,7 +46,7 @@ myapp.factory('JSONData', function()
 	"fol":[2,3,4,5],
 	"star":1,
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 },
 {
 	"PID":3,
@@ -57,7 +57,7 @@ myapp.factory('JSONData', function()
 	"fol":[1,2,3,4,5],
 	"star":1,
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":3,
@@ -67,7 +67,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 }, 
 {
 	"PID":3,
@@ -77,7 +77,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 }, 
 {
 	"PID":3,
@@ -87,7 +87,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 }, 
 {
 	"PID":3,
@@ -97,7 +97,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":3,
@@ -107,7 +107,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":5,
@@ -117,7 +117,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 },
 {
 	"PID":5,
@@ -127,7 +127,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":4,
@@ -137,7 +137,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS","Python","C++"],
-	"done":0
+	checked:false
 },
 {
 	"PID":4,
@@ -147,7 +147,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1,3],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 },
 {
 	"PID":4,
@@ -157,7 +157,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":0
+	checked:false
 },
 {
 	"PID":4,
@@ -167,7 +167,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1,3],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 },
 {
 	"PID":4,
@@ -177,7 +177,7 @@ myapp.factory('JSONData', function()
 	"TC":"Task6C",
 	"fol":[1,3],
 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	"done":1
+	checked:true
 }
 ]
 	

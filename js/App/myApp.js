@@ -10,19 +10,11 @@ hello=function()
     console.log("Hello");
 }
 
-var myapp=angular.module('myapp',['ui.state']);
+var myapp=angular.module('myapp',['ui.state','ui.keypress']);
 
 myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,GetMembers)
 {
-    // To load JSON file 
     
-    // $http.get('JsonTasks.json')
-    //     .then(function(res)
-    //     {
-    //         $scope.JsonData=res.data;
-            
-    //     });
-
     $scope.JsonData=JSONData;
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
@@ -40,14 +32,49 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
         console.log($scope.JsonData[TID-1].star);
     }
 
-    $scope.isChecked=function(TID)
-    {
-        // console.log($scope.JsonData[TID-1].done);
-        return ($scope.JsonData[TID-1].done);
-    }
-   
 
+    //On Change of checkbox eventHandler
+    $scope.updateSelection=function(e,TID)
+    {
+        
+        // console.log(e);
+        // console.log(e.srcElement.checked);
+        TaskName='inputTaskName'+TID;
+        // console.log(TaskName);
+        ModData=
+        {
+            "TID":TID,
+            "PID":$scope.JsonData[TID-1].PID,
+            "TN":document.getElementById(TaskName).value,
+            checked:e.srcElement.checked
+        };
+        console.log(ModData);
+        $scope.updateTask(ModData);
+    }
+
+
+    $scope.updateTaskOnEnter=function(e,TID)
+    {
+        
+        ModData=
+        {
+            "TID":TID,
+            "PID":$scope.JsonData[TID-1].PID,
+            "TN":document.getElementById(TaskName).value,
+            checked:$scope.JsonData[TID-1].checked
+        };
+        console.log(ModData);
+        $scope.updateTask(ModData);
+    }
     
+    //To update the task whenever return key is pressed for a task
+    //It updates only the 'TN' and the 'done'
+    $scope.updateTask=function(sendJSONdata)
+    {
+        // console.log(sendJSONdata);
+        //Send sendJSONdata to the server for updation
+    }
+
 });
 
 

@@ -17,28 +17,13 @@
 	</div>
 
 	<div style="padding-top:2px;height:20px;width:24px;margin-left:10px;float:left;">
-		<div ng-switch on="isChecked(item.TID)">
-			<div ng-switch-when="0">
-				<input type="checkbox" id="checkbox{{item.TID}}" class="css-checkbox lrg">
-				<label for="checkbox{{item.TID}}" name="checkbox{{item.TID}}_lbl" class="css-label lrg vlad"></label>
-			</div>
-
-			<div ng-switch-when="1">
-				<input type="checkbox" id="checkbox{{item.TID}}" class="css-checkbox lrg" checked="checked">
-				<label for="checkbox{{item.TID}}" name="checkbox{{item.TID}}_lbl" class="css-label lrg vlad"></label>
-			</div>
-			
-		</div>
-
-		<!-- <input type="checkbox" id="checkbox{{item.TID}}" class="css-checkbox lrg">
-		<label for="checkbox{{item.TID}}" name="checkbox{{item.TID}}_lbl" class="css-label lrg vlad"></label> -->
+		<input id="checkbox{{item.TID}}" type="checkbox" ng-model="item.checked" ng-click="updateSelection($event,item.TID)">
 
 	</div>
 
 	<div style="width:490px;float:right;line-height:24px;font-size:14px;">
-		<input value="{{item.TN}}" class="input-large">
-		<a href="#/{{routePID}}/task/{{item.TID}}"><button class="btn btn-info btn-small">Details</button></a>
-		<button class="btn btn-success btn-small">Save</button>
+		<!-- 13 is keyCode for return key -->
+		<input id="inputTaskName{{item.TID}}" ui-keypress="{13:'updateTaskOnEnter($event,item.TID)'}" value="{{item.TN}}" class="input-large">
 	</div>
 </div>
 
