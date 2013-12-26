@@ -22,8 +22,11 @@
 	</div>
 
 	<div class="IndividualTaskRowInput">
+		<label ng-hide="item.editingTask" ng-dblclick="editTask(item)">{{item.TN}}</label>
 		<!-- 13 is keyCode for return key -->
-		<input id="inputTaskName{{item.TID}}" ui-keypress="{13:'updateTaskOnEnter($event,item.TID)'}" value="{{item.TN}}" class="input-large">
+		<form ng-submit="doneEditingTask(task)">
+			<input ng-show="item.editingTask" id="inputTaskName{{item.TID}}" ng-model="item.TN" class="input-large">
+		</form>
 		<a href="#/{{routePID}}/task/{{item.TID}}"><button class="btn btn-info">Details</button></a>
 	</div>
 

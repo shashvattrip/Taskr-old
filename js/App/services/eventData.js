@@ -2,10 +2,12 @@ myapp.factory('JSONData', function()
 {
 	
 	var STORAGE_ID='tasks-of-shashvat';
-	console.log('new factory');
+	// console.log('new factory');
 	return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
 
 });
+
+
 
 
 myapp.factory('GetTags',function(JSONData)

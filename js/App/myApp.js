@@ -15,14 +15,14 @@ var myapp=angular.module('myapp',['ui.state','ui.keypress']);
 myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,GetMembers)
 {
     
-    $scope.JsonData=JSONData;
+    var tasks = $scope.JsonData=JSONData;
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
     $scope.routePID=$stateParams.PID;
 
     $scope.arrayOfTags=GetTags;
     $scope.arrayOfMembers=GetMembers;
-    
+    $scope.CountOfChangesInJsonData=0;
 
     //Get the index of TID from the JsonData array
     $scope.getIndexOf=function(TID)
@@ -34,8 +34,47 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
         };
     }
 
+    //This PutJSONData function needs to be separate I think. But I don't know where to put it. Maybe in services? Will figure it out later
+    PutJSONData=function(DataToPut)
+    {
+        var STORAGE_ID='tasks-of-shashvat';
+        // console.log('In PutJSONData factory\n I am not sure whether a factory is used to update model');
+        localStorage.setItem(STORAGE_ID,JSON.stringify(DataToPut));
+    };
 
 
+    $scope.$watch('JsonData',function()
+    {
+        $scope.CountOfChangesInJsonData++;
+        console.log($scope.CountOfChangesInJsonData);
+        PutJSONData($scope.JsonData);
+    },true);
+
+
+    $scope.editTask=function(task)
+    {
+        $scope.editedTask=task;
+        task.editingTask=true;
+    }
+
+    $scope.doneEditingTask=function(task)
+    {
+        task.TN=task.TN.trim();
+        console.log("reached");
+        task.editingTask=false;
+        if(!task.TN)
+            $scope.removeTask(task);
+    }
+
+    $scope.removeTask=function(task)
+    {
+        tasks.splice(tasks.indexOf(task),1);
+    }
+
+
+
+
+    // Below is the old mechanism for updation
     
     //On Change of checkbox eventHandler
     // $scope.updateSelection=function(e,TID)
@@ -75,7 +114,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
     //     $scope.createNewTask(e);
     // }
     
-    
+
     //To update the task whenever return key is pressed for a task
     //It updates only the 'TN' and the 'done'
     // $scope.updateTask=function(sendJSONdata)
