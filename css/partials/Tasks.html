@@ -17,17 +17,17 @@
 	</div>
 
 	<div class="IndividualTaskRowCheckBox">
-		<input id="checkbox{{task.TID}}" type="checkbox" ng-model="task.completed">
+		<input type="checkbox" ng-model="task.completed">
 
 	</div>
 
 	<div class="IndividualTaskRowInput">
-		<span style="float:left;" ng-hide="task.editing" ng-dblclick="startEditing(task)">{{task.TN}}</span>
+		<span style="float:left;" ng-hide="task.editing" ng-click="startEditing(task)">{{task.TN}}</span>
 		<!-- 13 is keyCode for return key -->
 		<form ng-submit="doneEditing(task)" ng-show="task.editing">
-			<input ng-blur="doneEditing(task)" ng-focus="task==editedTask" id="inputTaskName{{task.TID}}" ng-model="task.TN" class="input-large">
+			<input ng-blur="doneEditing(task)" ng-focus="task==editedTask" ng-model="task.TN" class="input-large">
 		</form>
-		<!-- <a href="#/{{routePID}}/task/{{task.TID}}"><button class="btn btn-info">Details</button></a> -->
+		<a style="float:right;" href="#/{{routePID}}/task/{{task.TID}}"><button class="btn btn-info">Details</button></a>
 	</div>
 
 </div>

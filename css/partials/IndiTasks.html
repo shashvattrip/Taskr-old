@@ -1,5 +1,5 @@
 <!-- Dynamically injected -->
-<div style="height:400px;background-color:#EEEEEE;border-top:8px solid #A4A4A4;">
+<div ng-init="index=getIndexOf(routeTID)" style="height:400px;background-color:#EEEEEE;border-top:8px solid #A4A4A4;" >
 					
 	<!-- nav1 -->
 	<div class="row" style="background-color:#E3E3E3;height:24px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;">
@@ -9,10 +9,23 @@
 
 	<!-- Task Details-1 -->
 	<div class="row" style="background-color:#ffffff;height:100px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;">
-	<p>project ID : {{JsonData[getIndexOf(routeTID)].PID}}</p>
-	<!-- <p>{{model_TID}}</p> -->
-	<p>Task Name : {{JsonData[getIndexOf(routeTID)].TN}}</p>
-	<p>Details : {{JsonData[getIndexOf(routeTID)].TD}} Checked : {{JsonData[getIndexOf(routeTID)].done}}</p>
+	
+	<p>project ID : {{JsonData[index].PID}}   TaskID : {{routeTID}} <input type="checkbox" ng-model="JsonData[index].completed"></p>
+	
+	<p>Task Name : 
+		<span ng-hide="JsonData[index].editing" ng-click="startEditing(JsonData[index])">{{JsonData[index].TN}}
+		</span>
+		
+		<form ng-submit="doneEditing(JsonData[index])" ng-show="JsonData[index].editing">
+			<input ng-blur="doneEditing(JsonData[index])" ng-focus="JsonData[index]==editedTask" ng-model="JsonData[index].TN" class="input-large">
+		</form>
+	</p>
+	
+	<p>
+		<form>
+			<input type="text" ng-model="JsonData[index].TD">
+		</form>
+	</p>
 		
 	</div>
 
@@ -25,10 +38,7 @@
 	<!-- Followers -->
 	<div class="row" style="background-color:#ffffff;height:30px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;">
 		<div style="width:80px;float:left;">Followers | </div>
-		<div style="float:left;margin-right:10px;" ng-repeat="follower in JsonData[getIndexOf(routeTID)].fol">{{follower}}
+		<div style="float:left;margin-right:10px;" ng-repeat="follower in JsonData[index].fol">{{follower}}
 		</div>
-		<!-- <p ng-repeat="follower in JsonData[routeTID-1].fol">{{follower}}></p> -->
-		
 	</div>
-
 </div>

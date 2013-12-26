@@ -37,7 +37,7 @@ myapp.directive('ngFocus', function( $timeout ) {
 
 
 
-myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
+myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData)
 {
     
     var tasksLocal = $scope.JsonData=JSONData;
@@ -47,10 +47,21 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
     $scope.routePID=$stateParams.PID;
 
 
+    $scope.getIndexOf=function(TID)
+    {
+        for (var i = 0; i < $scope.JsonData.length; i++) 
+        {
+            if($scope.JsonData[i].TID==TID)
+                return i;
+        };
+        
+        // return ($scope.JsonData.indexOf(TID));
+    }
+
     //This PutJSONData function needs to be separate I think. But I don't know where to put it. Maybe in services? Will figure it out later
     PutJSONData=function(DataToPut)
     {
-        var STORAGE_ID='Taskr-JSON-Server';
+        var STORAGE_ID='Stoopid';
         // console.log('In PutJSONData factory\n I am not sure whether a factory is used to update model');
         localStorage.setItem(STORAGE_ID,JSON.stringify(DataToPut));
     };
@@ -65,17 +76,10 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
         console.log($scope.CountOfChangesInJsonData);
         PutJSONData($scope.JsonData);
     },true);
-
-
-
-    // var todosLocal = $scope.todos = todoStorageGet;
-
+    
     $scope.newTask = '';
     $scope.editedTask = null;
 
-    //This is kinda redundant for now.
-    //I haven't provided an input for new task
-    // $scope.newTask doesn't exist in the view, yet 
     $scope.addTask = function () 
     {
         var newTask = $scope.newTask.trim();
@@ -84,11 +88,35 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
             return;
         }
 
+        //Generate a TID which is not used by any other task
+        //This immitates the server's functionality to ensure unique TIDs
+        var occupiedTIDs = [];
+        for(var i=0;i<$scope.JsonData.length;i++)
+            occupiedTIDs.push($scope.JsonData[i].TID);
+
+        var _TID;
+        console.log(occupiedTIDs);
+        for(var i=100;i>=0;i--)
+            if(occupiedTIDs.indexOf(i)==-1)
+            {
+                _TID=i;
+                break;
+            }
+            console.log(i);
+
         $scope.JsonData.push(
         {
-            "TN": newTask,
-            "TID":999,
-            "completed": false
+            "PID":1,
+            "TID":_TID,
+            "TN":newTask,
+            "TD":newTask+' Task Description ',
+            "TC":"Task1C",
+            "fol":[1,2,3,4,5],
+            "star":1,
+            "DueDate":"2013-1-24", 
+            "tags":["JS","AJAX","C#","iOS"],
+            completed:true
+
         });
         
         $scope.newTask = '';
@@ -105,12 +133,14 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
     // The $scope.JsonData gets updated for every keystroke in the input as the input box is ng-model="task.TN"
     $scope.doneEditing = function (task) 
     {
+      
         task.editing=false;
         task.TN = task.TN.trim();
         $scope.editedTask=null;
-        if (!task.TN) {
+        if (!task.TN) 
+        {
             $scope.removeTask(task);
-        }
+        }            
     };
 
 

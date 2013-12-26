@@ -236,13 +236,20 @@
 			</div>
 
 			<!-- sort and filter bar -->
+			<!-- Temporarily used for adding new task -->
 			<div class="row" style="background-color:#EEEEEE;height:30px;border-bottom:1px solid #A4A4A4;">
-
+				
 			</div>
 
-			
+			<!-- New Task Row -->
+			<div class="row" style="background-color:#E3E3E3;height:30px;border-bottom:1px solid #A4A4A4;">
+				<form ng-submit="addTask()">
+					<input id="new-todo" placeholder="What needs to be done?" ng-model="newTask" autofocus>
+				</form>
+			</div>
+
 			<!-- Dynamically created tasks --> <!-- Pane width:586px -->
-			<div ui-view="ProjectPane" class="row" style="height:470px;background-color:#123456;border-bottom:1px solid #A4A4A4;border-top:2px solid #A4A4A4;overflow:auto;">
+			<div ui-view="ProjectPane" class="row" style="height:420px;background-color:#123456;border-bottom:1px solid #A4A4A4;border-top:2px solid #A4A4A4;overflow:auto;">
 				Loading Tasks...
 				
 				

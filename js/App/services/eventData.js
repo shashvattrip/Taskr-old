@@ -1,7 +1,8 @@
 myapp.factory('JSONData', function()
 {
 	
-	var STORAGE_ID='Taskr-JSON-Server';
+	// var STORAGE_ID='Taskr-JSON-Server';
+	var STORAGE_ID='Stoopid';
 	// console.log('new factory');
 	return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
 
