@@ -10,21 +10,23 @@
 
 
 <!-- individual task -->
-<div ng-repeat="item in JsonData | filter:{PID:routePID}" class="row" style="background-color:#ffffff;height:24px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;">
+<div id="TaskRow{{item.TID}}" ng-repeat="item in JsonData | filter:{PID:routePID}" class="row IndividualTaskRow">
 	
-	<div style="height:24px;width:24px;float:left;line-height:24px;border-right:1px solid #A4A4A4;">
+	<div class="IndividualTaskRowTID">
 		{{item.TID}}
 	</div>
 
-	<div style="padding-top:2px;height:20px;width:24px;margin-left:10px;float:left;">
+	<div class="IndividualTaskRowCheckBox">
 		<input id="checkbox{{item.TID}}" type="checkbox" ng-model="item.checked" ng-click="updateSelection($event,item.TID)">
 
 	</div>
 
-	<div style="width:490px;float:right;line-height:24px;font-size:14px;">
+	<div class="IndividualTaskRowInput">
 		<!-- 13 is keyCode for return key -->
 		<input id="inputTaskName{{item.TID}}" ui-keypress="{13:'updateTaskOnEnter($event,item.TID)'}" value="{{item.TN}}" class="input-large">
+		<a href="#/{{routePID}}/task/{{item.TID}}"><button class="btn btn-info">Details</button></a>
 	</div>
+
 </div>
 
 

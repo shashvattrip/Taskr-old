@@ -1,187 +1,10 @@
 myapp.factory('JSONData', function()
 {
-	var obj;
-	obj=
-	[
-{
-	"PID":1,
-	"TID":1,
-	"TN":"Task1sdsdoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflow",
-	"TD":"Task1D1212",
-	"TC":"Task1C",
-	"fol":[1,2,3,4,5],
-	"star":1,
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
 	
-	"PID":1,
-	"TID":2,
-	"TN":"Task2",
-	"TD":"Task2D",
-	"TC":"Task2C",
-	"fol":[1,2],
-	"star":0,
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-},
-{
-	"PID":2,
-	"TID":3,
-	"TN":"Task3",
-	"TD":"Task3D",
-	"TC":"Task3C",
-	"fol":[1,3,4,5],
-	"star":1,
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":2,
-	"TID":4,
-	"TN":"Task4",
-	"TD":"Task4D",
-	"TC":"Task4C",
-	"fol":[2,3,4,5],
-	"star":1,
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-},
-{
-	"PID":3,
-	"TID":5,
-	"TN":"Task5",
-	"TD":"Task5D",
-	"TC":"Task5C",
-	"fol":[1,2,3,4,5],
-	"star":1,
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":3,
-	"TID":6,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-}, 
-{
-	"PID":3,
-	"TID":7,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-}, 
-{
-	"PID":3,
-	"TID":8,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-}, 
-{
-	"PID":3,
-	"TID":9,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":3,
-	"TID":10,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":5,
-	"TID":11,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-},
-{
-	"PID":5,
-	"TID":12,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":4,
-	"TID":13,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS","Python","C++"],
-	checked:false
-},
-{
-	"PID":4,
-	"TID":14,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1,3],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-},
-{
-	"PID":4,
-	"TID":15,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:false
-},
-{
-	"PID":4,
-	"TID":16,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1,3],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-},
-{
-	"PID":4,
-	"TID":17,
-	"TN":"Task6",
-	"TD":"Task6D",
-	"TC":"Task6C",
-	"fol":[1,3],
-	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
-	checked:true
-}
-]
-	
-	return obj;
+	var STORAGE_ID='tasks-of-shashvat';
+	console.log('new factory');
+	return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+
 });
 
 
@@ -233,3 +56,188 @@ myapp.factory('GetMembers',function(JSONData)
 
 	return arrayMembers;
 });
+
+
+
+// DUMMY DATA FOR TASKS
+// 	var obj;
+// 	obj=
+// 	[
+// {
+// 	"PID":1,
+// 	"TID":1,
+// 	"TN":"Task1sdsdoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflowoverflow",
+// 	"TD":"Task1D1212",
+// 	"TC":"Task1C",
+// 	"fol":[1,2,3,4,5],
+// 	"star":1,
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+	
+// 	"PID":1,
+// 	"TID":2,
+// 	"TN":"Task2",
+// 	"TD":"Task2D",
+// 	"TC":"Task2C",
+// 	"fol":[1,2],
+// 	"star":0,
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// },
+// {
+// 	"PID":2,
+// 	"TID":3,
+// 	"TN":"Task3",
+// 	"TD":"Task3D",
+// 	"TC":"Task3C",
+// 	"fol":[1,3,4,5],
+// 	"star":1,
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":2,
+// 	"TID":4,
+// 	"TN":"Task4",
+// 	"TD":"Task4D",
+// 	"TC":"Task4C",
+// 	"fol":[2,3,4,5],
+// 	"star":1,
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// },
+// {
+// 	"PID":3,
+// 	"TID":5,
+// 	"TN":"Task5",
+// 	"TD":"Task5D",
+// 	"TC":"Task5C",
+// 	"fol":[1,2,3,4,5],
+// 	"star":1,
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":3,
+// 	"TID":6,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// }, 
+// {
+// 	"PID":3,
+// 	"TID":7,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// }, 
+// {
+// 	"PID":3,
+// 	"TID":8,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// }, 
+// {
+// 	"PID":3,
+// 	"TID":9,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":3,
+// 	"TID":10,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":5,
+// 	"TID":11,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// },
+// {
+// 	"PID":5,
+// 	"TID":12,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":4,
+// 	"TID":13,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS","Python","C++"],
+// 	checked:false
+// },
+// {
+// 	"PID":4,
+// 	"TID":14,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1,3],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// },
+// {
+// 	"PID":4,
+// 	"TID":15,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:false
+// },
+// {
+// 	"PID":4,
+// 	"TID":16,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1,3],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// },
+// {
+// 	"PID":4,
+// 	"TID":17,
+// 	"TN":"Task6",
+// 	"TD":"Task6D",
+// 	"TC":"Task6C",
+// 	"fol":[1,3],
+// 	"DueDate":"2013-1-24", "tags":["JS","AJAX","C#","iOS"],
+// 	checked:true
+// }
+// ]
+
