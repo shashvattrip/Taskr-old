@@ -10,24 +10,24 @@
 
 
 <!-- individual task -->
-<div id="TaskRow{{item.TID}}" ng-repeat="item in JsonData | filter:{PID:routePID}" class="row IndividualTaskRow">
+<div id="TaskRow{{task.TID}}" ng-repeat="task in JsonData | filter:{PID:routePID}" class="row IndividualTaskRow">
 	
 	<div class="IndividualTaskRowTID">
-		{{item.TID}}
+		{{task.TID}}
 	</div>
 
 	<div class="IndividualTaskRowCheckBox">
-		<input id="checkbox{{item.TID}}" type="checkbox" ng-model="item.checked" ng-click="updateSelection($event,item.TID)">
+		<input id="checkbox{{task.TID}}" type="checkbox" ng-model="task.completed">
 
 	</div>
 
 	<div class="IndividualTaskRowInput">
-		<label ng-hide="item.editingTask" ng-dblclick="editTask(item)">{{item.TN}}</label>
+		<span style="float:left;" ng-hide="task.editing" ng-dblclick="startEditing(task)">{{task.TN}}</span>
 		<!-- 13 is keyCode for return key -->
-		<form ng-submit="doneEditingTask(task)">
-			<input ng-show="item.editingTask" id="inputTaskName{{item.TID}}" ng-model="item.TN" class="input-large">
+		<form ng-submit="doneEditing(task)" ng-show="task.editing">
+			<input ng-blur="doneEditing(task)" ng-focus="task==editedTask" id="inputTaskName{{task.TID}}" ng-model="task.TN" class="input-large">
 		</form>
-		<a href="#/{{routePID}}/task/{{item.TID}}"><button class="btn btn-info">Details</button></a>
+		<!-- <a href="#/{{routePID}}/task/{{task.TID}}"><button class="btn btn-info">Details</button></a> -->
 	</div>
 
 </div>

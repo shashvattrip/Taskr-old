@@ -12,37 +12,53 @@ hello=function()
 
 var myapp=angular.module('myapp',['ui.state','ui.keypress']);
 
-myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,GetMembers)
+
+
+myapp.directive('ngBlur', function() {
+  return function( scope, elem, attrs ) {
+    elem.bind('blur', function() {
+      scope.$apply(attrs.ngBlur);
+    });
+  };
+});
+
+
+myapp.directive('ngFocus', function( $timeout ) {
+  return function( scope, elem, attrs ) {
+    scope.$watch(attrs.ngFocus, function( newval ) {
+      if ( newval ) {
+        $timeout(function() {
+          elem[0].focus();
+        }, 0, false);
+      }
+    });
+  };
+});
+
+
+
+myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData)
 {
     
-    var tasks = $scope.JsonData=JSONData;
+    var tasksLocal = $scope.JsonData=JSONData;
+
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
     $scope.routePID=$stateParams.PID;
 
-    $scope.arrayOfTags=GetTags;
-    $scope.arrayOfMembers=GetMembers;
-    $scope.CountOfChangesInJsonData=0;
-
-    //Get the index of TID from the JsonData array
-    $scope.getIndexOf=function(TID)
-    {
-        for (var i = 0; i < $scope.JsonData.length; i++) 
-        {
-            if(TID==$scope.JsonData[i].TID)
-                return i;
-        };
-    }
 
     //This PutJSONData function needs to be separate I think. But I don't know where to put it. Maybe in services? Will figure it out later
     PutJSONData=function(DataToPut)
     {
-        var STORAGE_ID='tasks-of-shashvat';
+        var STORAGE_ID='Taskr-JSON-Server';
         // console.log('In PutJSONData factory\n I am not sure whether a factory is used to update model');
         localStorage.setItem(STORAGE_ID,JSON.stringify(DataToPut));
     };
 
+    $scope.CountOfChangesInJsonData=0;
 
+    //Changes for every keystroke, it doesn't wait for the submit button to be pressed
+    //Submit button is only to remove the input box and bring back the label
     $scope.$watch('JsonData',function()
     {
         $scope.CountOfChangesInJsonData++;
@@ -51,26 +67,75 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,JSONData,GetTags,
     },true);
 
 
-    $scope.editTask=function(task)
-    {
-        $scope.editedTask=task;
-        task.editingTask=true;
-    }
 
-    $scope.doneEditingTask=function(task)
+    // var todosLocal = $scope.todos = todoStorageGet;
+
+    $scope.newTask = '';
+    $scope.editedTask = null;
+
+    //This is kinda redundant for now.
+    //I haven't provided an input for new task
+    // $scope.newTask doesn't exist in the view, yet 
+    $scope.addTask = function () 
     {
-        task.TN=task.TN.trim();
-        console.log("reached");
-        task.editingTask=false;
-        if(!task.TN)
+        var newTask = $scope.newTask.trim();
+        if (!newTask.length) 
+        {
+            return;
+        }
+
+        $scope.JsonData.push(
+        {
+            "TN": newTask,
+            "TID":999,
+            "completed": false
+        });
+        
+        $scope.newTask = '';
+    };
+
+
+    $scope.startEditing = function (task) 
+    {
+        task.editing=true;
+        $scope.editedTask = task;
+    };
+
+    //Submit button is only to remove the input box and bring back the label
+    // The $scope.JsonData gets updated for every keystroke in the input as the input box is ng-model="task.TN"
+    $scope.doneEditing = function (task) 
+    {
+        task.editing=false;
+        task.TN = task.TN.trim();
+        $scope.editedTask=null;
+        if (!task.TN) {
             $scope.removeTask(task);
-    }
+        }
+    };
 
-    $scope.removeTask=function(task)
+
+    $scope.removeTask = function (task) 
     {
-        tasks.splice(tasks.indexOf(task),1);
-    }
+        tasksLocal.splice(tasksLocal.indexOf(task), 1);
+    };
 
+
+    $scope.clearDoneTasks = function () 
+    {
+        $scope.JsonData = tasksLocal = tasksLocal.filter(function (val) 
+        {
+            return !val.completed;
+        });
+    };
+
+
+    $scope.markAll = function (task) 
+    {
+        tasksLocal.forEach(function (task) 
+        {
+            tasksLocal.completed = done;
+        });
+    };
 
 
 
