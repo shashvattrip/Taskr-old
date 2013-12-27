@@ -22,10 +22,10 @@
 	</div>
 
 	<div class="IndividualTaskRowInput">
-		<span style="float:left;" ng-hide="task.editing" ng-click="startEditing(task)">{{task.TN}}</span>
+		<span style="float:left;" ng-hide="task.editingTaskName" ng-click="startEditing(task,'taskName')">{{task.TN}}</span>
 		<!-- 13 is keyCode for return key -->
-		<form ng-submit="doneEditing(task)" ng-show="task.editing">
-			<input ng-blur="doneEditing(task)" ng-focus="task==editedTask" ng-model="task.TN" class="input-large">
+		<form ng-submit="doneEditing(task,'taskName')" ng-show="task.editingTaskName">
+			<input ng-blur="doneEditing(task,'taskName')" ng-focus="task==editedTaskName" ng-model="task.TN" class="input-large">
 		</form>
 		<a style="float:right;" href="#/{{routePID}}/task/{{task.TID}}"><button class="btn btn-info">Details</button></a>
 	</div>

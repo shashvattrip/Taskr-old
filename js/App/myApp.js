@@ -40,8 +40,6 @@ myapp.directive('ngFocus', function( $timeout ) {
 myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData)
 {
     
-    var tasksLocal = $scope.JsonData=JSONData;
-
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
     $scope.routePID=$stateParams.PID;
@@ -77,9 +75,13 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
         PutJSONData($scope.JsonData);
     },true);
     
-    $scope.newTask = '';
-    $scope.editedTask = null;
 
+    //All these functions required for editing
+    $scope.newTask = '';
+    $scope.editedTaskName = null;
+    $scope.editedProjectName=null;
+
+    var tasksLocal = $scope.JsonData=JSONData;
     $scope.addTask = function () 
     {
         var newTask = $scope.newTask.trim();
@@ -123,24 +125,49 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     };
 
 
-    $scope.startEditing = function (task) 
+    $scope.startEditing = function (task,editWhat) 
     {
-        task.editing=true;
-        $scope.editedTask = task;
+        switch(editWhat)
+        {
+            case "taskName":
+                task.editingTaskName=true;
+                $scope.editedTaskName = task;
+                break;
+
+            case "projectName":
+                task.editingProjectName=true;
+                $scope.editedProjectName=task;
+                break;
+        }
+        
     };
 
     //Submit button is only to remove the input box and bring back the label
     // The $scope.JsonData gets updated for every keystroke in the input as the input box is ng-model="task.TN"
-    $scope.doneEditing = function (task) 
+    $scope.doneEditing = function (task, editWhat) 
     {
-      
-        task.editing=false;
-        task.TN = task.TN.trim();
-        $scope.editedTask=null;
-        if (!task.TN) 
+        switch(editWhat)
         {
-            $scope.removeTask(task);
-        }            
+            case "taskName":
+                task.editingTaskName=false;
+                task.TN = task.TN.trim();
+                $scope.editedTaskName=null;
+                if (!task.TN) 
+                {
+                    $scope.removeTask(task);
+                }   
+                break;
+            case "projectName":
+                task.editingProjectName=false;
+                // task.PID = task.PID.trim();
+                $scope.editedProjectName=null;
+                if (!task.PID) 
+                {
+                    task.PID=0;
+                }   
+                break;
+        }
+                 
     };
 
 
