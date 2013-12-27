@@ -45,17 +45,6 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
     $scope.routePID=$stateParams.PID;
-    $scope.TESTDATE;
-
-    // $scope.SetDate=function(TID,index)
-    // {
-    //     console.log(TID);
-    //     console.log(index);
-    //     console.log('idDateOf'+TID);
-    //     var str='idDateOf'+TID;
-    //     document.getElementById(str).val($scope.JsonData[index].DueDate);
-    //     return ('idDateOf'+TID);
-    // }
 
 
     $scope.getIndexOf=function(TID)
@@ -72,9 +61,9 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     //This PutJSONData function needs to be separate I think. But I don't know where to put it. Maybe in services? Will figure it out later
     PutJSONData=function(DataToPut)
     {
-        var STORAGE_ID='Taskr-JSON-Server';
+        var STORAGE_ID='Stoopid';
         // console.log('In PutJSONData factory\n I am not sure whether a factory is used to update model');
-        // localStorage.setItem(STORAGE_ID,JSON.stringify(DataToPut));
+        localStorage.setItem(STORAGE_ID,JSON.stringify(DataToPut));
     };
 
     $scope.CountOfChangesInJsonData=0;
