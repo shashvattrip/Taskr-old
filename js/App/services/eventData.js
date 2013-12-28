@@ -231,7 +231,10 @@ myapp.factory('GetMembers',function(JSONData)
 			arrayMembers.forEach(function(elem)
 			{
 				if(value2===elem)
+				{
 					flag=1;
+					// break;
+				}	
 			});
 			if(flag===0)
 				arrayMembers.push(value2);
@@ -244,5 +247,26 @@ myapp.factory('GetMembers',function(JSONData)
 
 
 
-// DUMMY DATA FOR TASKS
+myapp.factory('GetProjectIDs',function(JSONData)
+{
+	var arrayProjectIDs=[];
+	var obj=JSONData;
+	obj.forEach(function(value)
+	{
+		var flag=0;
+		arrayProjectIDs.forEach(function(elem)
+		{
+			if(elem===value.PID)
+			{
+				flag=1;
+				// break;
+			}
+
+		});
+		if(flag===0)
+			arrayProjectIDs.push(value.PID);
+	});
+
+	return arrayProjectIDs;
+});
 

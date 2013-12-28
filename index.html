@@ -94,8 +94,8 @@
 		  	<div class="navbar-inner">
 		    	<a class="brand" href="#">Taskr</a>
 		    	<div class="nav">
-		    		<form class="form-search">
-  						<input type="text" class="input-medium">
+		    		<form ng-submit="" class="form-search">
+  						<input ng-model="search_query_string" type="text" class="input-medium">
   					</form>
 		    	</div>
 		  	</div>
@@ -156,11 +156,7 @@
 
 			<!-- Show More -->
 			<div class="row" style="background-color:#EEEEEE;height:92px;width:100%;border-top:solid 2px #A4A4A4;border-bottom:solid 2px #A4A4A4;line-height:32px;font-size:14px;text-align:center;">
-
-				<a href="#/1">Project 1</a><br>
-				<a href="#/2">Project 2</a><br>
-				<a href="#/3">Project 3</a><br>
-
+				<a ng-repeat="project in ListAllProjectIDs" ng-href="#/{{project}}">Project {{project}}<br></a>
 			</div>
 
 			<!-- Blank Space -->

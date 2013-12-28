@@ -19,7 +19,7 @@
 			Print Task
 		</div>
 		<div style="background-color:blue;width:100px;height:100%;float:left;margin-left:4px;">
-			Delete Task
+			<div ng-click="removeTask(JsonData[index])">Delete Task</div>
 		</div>
 	</div>
 
@@ -52,11 +52,16 @@
 		<input type="text" style="width:95%;" ng-model="JsonData[index].TD">
 		<!-- Tags -->
 		<div style="width:95%;height:35px;background-color:red;">
-			<p style="float:left;">Tags : </p>
+			<p style="float:left;">Tags<span style="font-size:8px;">(click on * to delete)</span> : </p>
 			
 			<div ng-repeat="tag in JsonData[index].tags" style="margin-left:4px;float:left;height:32px;width:35px;background-color:white;">
-				{{tag}}
+				{{tag}}-<div ng-click="removeTag(index,tag)" style="color:red;cursor:pointer;">*</div>
 			</div>
+			Add Tag
+			<form ng-submit="addTag(index)">
+				<input type="text" style="width:60px;" ng-model="newTag">
+			</form>
+			
 		</div>
 		<!-- Followers -->
 		<div style="width:95%;height:35px;background-color:red;">
