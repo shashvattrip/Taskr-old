@@ -10,10 +10,10 @@
 
 
 <!-- individual task -->
-<div id="TaskRow{{task.TID}}" ng-repeat="task in JsonData | filter:{PID:routePID}" class="row IndividualTaskRow">
+<div id="TaskRow{{task.TID}}" ng-repeat="task in JsonData | orderBy:sortOrder | filter:{PID:routePID}" class="row IndividualTaskRow">
 	
 	<div class="IndividualTaskRowTID">
-		{{task.TID}}
+		{{task.TID}}--{{sortOrder}}
 	</div>
 
 	<div class="IndividualTaskRowCheckBox">

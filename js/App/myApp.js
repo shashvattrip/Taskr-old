@@ -37,14 +37,15 @@ myapp.directive('ngFocus', function( $timeout ) {
 
 
 
-myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData)
+myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData,GetTags)
 {
     
     $scope.state=$stateParams;
     $scope.routeTID=$stateParams.TID;
     $scope.routePID=$stateParams.PID;
-
-
+    $scope.ListAllTags=GetTags;
+    // $scope.sortOrder="PID";
+    
     $scope.getIndexOf=function(TID)
     {
         for (var i = 0; i < $scope.JsonData.length; i++) 

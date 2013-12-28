@@ -50,6 +50,15 @@
 	<!-- Description -->
 	<div class="row" style="background-color:#E3E3E3;height:230px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;color:blue;">
 		<input type="text" style="width:95%;" ng-model="JsonData[index].TD">
+		<!-- Tags -->
+		<div style="width:95%;height:35px;background-color:red;">
+			<p style="float:left;">Tags : </p>
+			
+			<div ng-repeat="tag in JsonData[index].tags" style="margin-left:4px;float:left;height:32px;width:35px;background-color:white;">
+				{{tag}}
+			</div>
+		</div>
+		<!-- Followers -->
 		<div style="width:95%;height:35px;background-color:red;">
 			<p style="float:left;">followers : </p>
 			
