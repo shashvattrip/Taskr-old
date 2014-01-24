@@ -9,9 +9,7 @@
 		<div style="background-color:blue;width:120px;height:100%;float:left;margin-left:4px;">
 			{{JsonData[index].DueDate}}
 		</div>
-		<div style="background-color:blue;width:40px;height:100%;float:left;margin-left:4px;">
-			Tags
-		</div>
+		
 		<div style="background-color:blue;width:40px;height:100%;float:left;margin-left:4px;">
 			Heart
 		</div>
@@ -19,7 +17,7 @@
 			Print Task
 		</div>
 		<div style="background-color:blue;width:100px;height:100%;float:left;margin-left:4px;">
-			<div ng-click="removeTask(JsonData[index])">Delete Task</div>
+			<div style="cursor:pointer;" ng-click="removeTask(JsonData[index])">Delete Task</div>
 		</div>
 	</div>
 

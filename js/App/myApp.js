@@ -4,13 +4,7 @@
 // Add Tags on Individual Tasks
 // Add Filter based on Tags
 
-
-hello=function()
-{
-    console.log("Hello");
-}
-
-var myapp=angular.module('myapp',['ui.state','ui.keypress']);
+var myapp=angular.module('myapp',['ui.state']);
 
 
 
@@ -37,6 +31,10 @@ myapp.directive('ngFocus', function( $timeout ) {
 
 
 
+
+
+
+
 myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData,GetTags,GetProjectIDs)
 {
     
@@ -45,21 +43,13 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     $scope.routePID=$stateParams.PID;
     $scope.ListAllTags=GetTags;
     $scope.ListAllProjectIDs=GetProjectIDs;
-    // $scope.sortOrder="PID";
     
     
-    //Search Feature
+
     
 
 
-
-
-
-
-
-
-
-
+    
 
     $scope.getIndexOf=function(TID)
     {
@@ -87,7 +77,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     $scope.$watch('JsonData',function()
     {
         $scope.CountOfChangesInJsonData++;
-        console.log($scope.CountOfChangesInJsonData);
+        // console.log($scope.CountOfChangesInJsonData);
         PutJSONData($scope.JsonData);
         $scope.ListAllTags=GetTags;
     },true);
@@ -156,6 +146,10 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
                 break;
         }
         
+        
+        var tempPath='/'+$scope.routePID+'/task/'+task.TID;
+        console.log(tempPath);
+        $location.path(tempPath);
     };
 
     //Submit button is only to remove the input box and bring back the label
@@ -215,6 +209,8 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     {
         $scope.JsonData[index].tags.push($scope.newTag);
         $scope.newTag='';
+        // ListAllTags=GetTags;
+        // $scope.$apply;
     }
 
     $scope.removeTag=function(index,tag)
@@ -224,7 +220,71 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
             $scope.JsonData[index].tags.splice(ind,1);
     }
 
+
+
+    //Functions to get the filter by tag functionality working
+
+    $scope.selectedTags=['JS'];
+
+    $scope.isChecked = function(tag) 
+    {
+        // console.log('$scope.selectedTags.indexOf(tag)');
+        // console.log($scope.selectedTags.indexOf(tag));
+        console.log($scope.selectedTags);
+        if($scope.selectedTags.indexOf(tag)>-1)
+        // if($scope.ListAllTags[$scope.ListAllTags.(indexOf(tag))].filter==false)
+        {
+            return 'icon-ok';
+        }
+        return false;
+    };
+
+    $scope.SetSelectedTags=function(tag)
+    {
+        // console.log(tag);
+        if($scope.selectedTags.indexOf(tag)==-1)
+        
+            $scope.selectedTags.push(tag);
+            
+        else if($scope.selectedTags.indexOf(tag)>-1)
+        
+            $scope.selectedTags.splice($scope.selectedTags.indexOf(tag),1);
+            
+        
+        // console.log($scope.selectedTags);
+    }
+
+
+
 });
+
+
+
+myapp.filter('tagFilter',function()
+{
+    return function(Data,selectedTags)
+    {
+        console.log('selectedTags array');
+        console.log(selectedTags);
+        if(selectedTags.length==0)
+        {   
+            console.log('Nothing changed');
+            return Data;
+        }
+        else
+        {
+            tempData=[];
+            Data.forEach(function(task)
+            {
+                console.log(task);
+            });
+            return Data;
+        }
+    }
+});
+
+
+
 
 
 myapp.config(function($stateProvider,$urlRouterProvider,$routeProvider)

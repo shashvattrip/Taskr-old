@@ -5,11 +5,13 @@
 	<script src="js/App/angular.min.js"></script>
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script src="js/App/angular-ui-router.js"></script>
-	<script src="js/App/modules/keypress/keypress.js"></script>
+	<!--<script src="js/App/modules/keypress/keypress.js"></script> -->
+	<script src="js/App/angular-animate.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/checkbox/style.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/animations.css"> -->
 </head>
 
 <style>
@@ -223,7 +225,7 @@
 				</div>
 
 				<div style="height:44px;line-height:44px;float:left;padding-left:10px;">
-					Taskrr
+					Taskr
 				</div>
 
 				<div style="height:44px;line-height:44px;float:left;padding-left:10px;">
@@ -233,16 +235,17 @@
 
 			<!-- sort and filter bar -->
 			<div class="row" style="background-color:#EEEEEE;height:30px;border-bottom:1px solid #A4A4A4;">
+			
+
 				<div class="btn-group">
-  					<a class="btn dropdown-toggle" data-toggle="dropdown" href="">
-					    Filter by Tags
-					    <span class="caret"></span>
-  					</a>
-  					<ul class="dropdown-menu">
-    					<!-- dropdown menu links -->
-    					<a href="" ng-repeat="tags in ListAllTags"><li>{{tags}}</li></a>
-  					</ul>
-				</div>	
+				  	<button class="btn">Filter by tags</button>
+				  	<button class="btn dropdown-toggle" data-toggle="dropdown">
+				    	<span class="caret"></span>
+				  	</button>
+				  	<ul class="dropdown-menu">
+				    	<li ng-repeat="tag in ListAllTags"><a ng-click="SetSelectedTags(tag)">{{tag}}<span ng-class="isChecked(tag)"></span></a></li>
+				  	</ul>
+				</div>
 				Sort By<select ng-model="sortOrder" class="input-small">
 					<option value="TID">TID</option>
 					<option value="PID">PID</option>
@@ -250,13 +253,19 @@
 					<option value="-completed">Done First</option>
 					<option value="completed">Not Done</option>
 				</select>
+
 			</div>
 
 			<!-- New Task Row -->
 			<div class="row" style="background-color:#E3E3E3;height:30px;border-bottom:1px solid #A4A4A4;">
+				
 				<form ng-submit="addTask()">
-					<input id="new-todo" placeholder="What needs to be done?" ng-model="newTask" autofocus>
+					<input id="new-todo" style="width:160px;float:left;" placeholder="What needs to be done?" ng-model="newTask" autofocus>
+
 				</form>
+
+				
+
 			</div>
 
 			<!-- Dynamically created tasks --> <!-- Pane width:586px -->
