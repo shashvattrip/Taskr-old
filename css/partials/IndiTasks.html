@@ -11,7 +11,7 @@
 					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/pic.png" >
 				</a>
 			</div>
-			<div  style="float:left; margin-top: 5px; margin-left:14px">
+			<div  style="float:left;margin-top:5px;margin-left:14px;">
 				shashvat
 			</div>
 			
@@ -66,7 +66,7 @@
 			<div style="margin-left:50px;float:left;font-size:12px;color:#747474;margin-top:4px"><strong>Description :</strong>
 			</div>
 			<form style="margin-left:10px;float:left">
-				<input class="century" style="font-size:12px;color:white;width:300px;background-color:#77D28E;border:1px solid #77D28E;" type="text" ng-model="JsonData[index].TD">
+				<textarea class="century" style="font-size:12px;color:white;width:300px;background-color:#77D28E;border:1px solid #77D28E;" type="text" ng-model="JsonData[index].TD"></textarea>
 			</form>
 		</div>
 	</div>
@@ -79,7 +79,7 @@
 			post a comment
 		</div>	
 		<form style="margin-left:20px;float:left;margin-top:10px">
-			<input class="century"style="background-color:#ffffff;border:1px solid #ffffff;font-size:12px;color:#77d28e;width:300px"type="text" ng-model="JsonData[index].TD">
+			<input class="century"style="background-color:#ffffff;border:1px solid #ffffff;font-size:12px;color:#77d28e;width:300px"type="text">
 		</form>
 		
 	</div>
@@ -92,45 +92,11 @@
 
 		<div style="width:80px;float:left;margin-left:10px;color:#747474">Followers | </div>
 
-		<div style="float:left;margin-right:10px;color:#747474" ng-repeat="follower in JsonData[index].fol">{{follower}}
+		<div style="cursor:pointer;float:left;margin-right:10px;color:#747474" ng-repeat="follower in JsonData[index].fol" ng-click="removeFollower(index,follower)">{{follower}}
 		</div>
 		<div style="float:left;margin-left:30px">	
-			<img src="images/add.png" style="width:20px">
+			<img src="images/add.png" style="width:20px" ng-click="addFollower(index)">
 		</div>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

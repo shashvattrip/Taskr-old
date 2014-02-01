@@ -124,7 +124,9 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
             "star":1,
             "DueDate":"2013-1-24", 
             "tags":["JS","AJAX"],
-            completed:true
+            "assignedTo":"Shashvat",
+            "assignedBy":"Shashvat",
+            completed:false
         });
         
         $scope.newTask = '';
@@ -254,8 +256,15 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
         // console.log($scope.selectedTags);
     }
 
+    $scope.addFollower=function(index)
+    {
+        $scope.JsonData[index].fol.push('S');
+    }
 
-
+    $scope.removeFollower=function(index,follower)
+    {
+        $scope.JsonData[index].fol.splice($scope.JsonData[index].fol.indexOf(follower),1);
+    }
 });
 
 
