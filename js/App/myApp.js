@@ -256,15 +256,25 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
         // console.log($scope.selectedTags);
     }
 
-    $scope.addFollower=function(index)
+    $scope.addFollower=function(task)
     {
-        $scope.JsonData[index].fol.push('S');
+        task.fol.push('S');
     }
 
-    $scope.removeFollower=function(index,follower)
+    $scope.removeFollower=function(task,follower)
     {
-        $scope.JsonData[index].fol.splice($scope.JsonData[index].fol.indexOf(follower),1);
+        task.fol.splice(task.fol.indexOf(follower),1);
     }
+
+    $scope.addAssignedTo=function(index)
+    {
+        if($scope.JsonData[index].assignedTo)
+            $scope.JsonData[index].assignedTo=null;
+        else
+            $scope.JsonData[index].assignedTo="Shashvat";
+        
+    }
+
 });
 
 
@@ -273,11 +283,11 @@ myapp.filter('tagFilter',function()
 {
     return function(Data,selectedTags)
     {
-        console.log('selectedTags array');
-        console.log(selectedTags);
+        // console.log('selectedTags array');
+        // console.log(selectedTags);
         if(selectedTags.length==0)
         {   
-            console.log('Nothing changed');
+            // console.log('Nothing changed');
             return Data;
         }
         else
@@ -285,7 +295,7 @@ myapp.filter('tagFilter',function()
             tempData=[];
             Data.forEach(function(task)
             {
-                console.log(task);
+                // console.log(task);
             });
             return Data;
         }

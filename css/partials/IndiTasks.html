@@ -7,12 +7,12 @@
 
 		<div  id="nav1" class="right-nav">
 			<div style="float:left;">
-				<a href="#" >
-					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/pic.png" >
+				<a href="" >
+					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/pic.png" ng-click="addAssignedTo(index)">
 				</a>
 			</div>
-			<div  style="float:left;margin-top:5px;margin-left:14px;">
-				shashvat
+			<div  style="float:left;margin-top:5px;margin-left:14px;" ng-click="removedAssignedTo(index)">
+				{{JsonData[index].assignedTo}}
 			</div>
 			
 		</div>
@@ -33,7 +33,9 @@
 			<img style="height:15px;margin-left:20px"src="images/pin.png">
 			<img style="height:15px;margin-left:14px"src="images/luv.png">
 			<img style="height:15px;margin-left:14px"src="images/imp.png">
-			<img style="height:15px;margin-left:60px"src="images/lock.png">
+			<img style="height:15px;margin-left:14px"src="images/lock.png">
+			<img ng-click="removeTask(JsonData[index])" style="height:15px;margin-left:46px"src="images/lock.png">
+
 		</div>
 	</div>	
 			<!-- nav1 ends -->
@@ -92,10 +94,10 @@
 
 		<div style="width:80px;float:left;margin-left:10px;color:#747474">Followers | </div>
 
-		<div style="cursor:pointer;float:left;margin-right:10px;color:#747474" ng-repeat="follower in JsonData[index].fol" ng-click="removeFollower(index,follower)">{{follower}}
+		<div style="cursor:pointer;float:left;margin-right:10px;color:#747474" ng-repeat="follower in JsonData[index].fol" ng-click="removeFollower(JsonData[index],follower)">{{follower}}
 		</div>
 		<div style="float:left;margin-left:30px">	
-			<img src="images/add.png" style="width:20px" ng-click="addFollower(index)">
+			<img src="images/add.png" style="width:20px" ng-click="addFollower(JsonData[index])">
 		</div>
 	</div>
 </div>
