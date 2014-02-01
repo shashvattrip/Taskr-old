@@ -10,6 +10,8 @@
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/checkbox/style.css">
+	
+	
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<!-- <link rel="stylesheet" type="text/css" href="css/animations.css"> -->
 </head>
@@ -126,13 +128,13 @@
 				<div style="height:40px;width:100%;">
 					<div id="ProjectName" >
 						<a class="link"href="">
-							<p class="projectmain">Project 1</p>
+							<p class="projectmain">Project 1 <span ng-model="selectedProject"></span></p>
 						</a>
 					</div>
 					
 					<!-- Place for the arrow -->
 					<div class="mainarrow">
-						<a href="#/">
+						<a href="">
 							<img src="images/1.png">
 						</a>
 					</div>
@@ -148,7 +150,7 @@
 				<div style="height:70px;width:100%;background-color:#ffffff;">
 					
 					<!-- My Tasks -->
-					<div id="nav1"class="mi" >
+					<div id="nav1" class="mi" >
 						<div style="margin-top:5px;">
 							<a class="link" style="color:#747474" href="#/">
 								my tasks
@@ -184,13 +186,6 @@
 			<div class="row" style="height:12px;width:100%;background-color:#e3e3e3;">
 			</div>
 
-			<!-- Show More -->
-			<!-- <div class="row" style="background-color:#EEEEEE;height:92px;width:100%;border-top:solid 2px #A4A4A4;border-bottom:solid 2px #A4A4A4;line-height:32px;font-size:14px;text-align:center;">
-				<a ng-repeat="project in ListAllProjectIDs" ng-href="#/{{project}}">Project {{project}}<br></a>
-			</div> -->
-
-			
-
 			<!-- Add People to project -->
 			<div class="row century" style="background-color:#EEEEEE;height:80px;width:100%;border-bottom:solid 1px #cbcbcb">
 	
@@ -217,9 +212,9 @@
 
 			
 			<!-- Teammates -->
-			<div class="row century" style="background-color:#E3E3E3;height:96px;width:100%;">
+			<div class="row century" style="background-color:#E3E3E3;height:96px;width:100%;overflow:auto;">
 
-				<div id="nav1"class="row team" style="border-bottom:solid 1px #cbcbcb">
+				<div ng-repeat="member in ListAllMembers" id="nav1" class="row team" style="border-bottom:solid 1px #cbcbcb">
 
 					<div>
 						<a href="#" >
@@ -228,37 +223,13 @@
 					</div>
 
 					<div >
-						<p class="teamnamemain">team mate 1</p>
+						<p class="teamnamemain">team mate {{member}}</p>
 					</div>
 
 				</div>
-				<div id="nav1"class="row team" >
+				
 
-					<div >
-						<a href="#" >
-							<img class="teampic"src="images/pic.png" >
-						</a>
-					</div>
-
-					<div >
-						<p class="teamname">team mate 2</p>
-					</div>
-
-				</div>
-
-				<div id="nav1"class="row team" >
-
-					<div>
-						<a href="#" >
-							<img class="teampic" src="images/pic.png" >
-						</a>
-					</div>
-
-					<div >
-						<p class="teamname">team mate 3</p>
-					</div>
-
-				</div>
+				
 				
 			</div>
 
@@ -266,26 +237,25 @@
 			<br>
 			
 
-			<div class="row century" style="background-color:#EEEEEE;height:90px;width:100%;border-top:solid 1px #cbcbcb;border-bottom:solid 1px #cbcbcb;line-height:32px;font-size:14px;">
+			<!-- Show More -->
+			<!-- <div class="row" style="background-color:#EEEEEE;height:92px;width:100%;border-top:solid 2px #A4A4A4;border-bottom:solid 2px #A4A4A4;line-height:32px;font-size:14px;text-align:center;">
+				<a ng-repeat="project in ListAllProjectIDs" ng-href="#/{{project}}">Project {{project}}<br></a>
+			</div> -->
+
+			<div class="row century" style="background-color:#EEEEEE;height:90px;width:100%;border-top:solid 1px #cbcbcb;border-bottom:solid 1px #cbcbcb;line-height:32px;font-size:14px;overflow:auto;">
 				
 				
 
-				<div id="nav1" class="project">
+				<div id="nav1" class="project" ng-repeat="project in ListAllProjectIDs">
 					<img src="images/right.png" class="project_pic">
-					<a class="link" href="#/1" style="color:#989898;font-size:14px">Project 2</a><br>
+					<a class="link" ng-href="#/{{project}}" style="color:#989898;font-size:14px">Project {{project}}</a><br>
 				</div>
-
-				<div id="nav1" class="project">
-					<img src="images/right.png" class="project_pic">
-					<a class="link" href="#/1" style="color:#989898;font-size:14px">Project 3</a><br>
-				</div>
-				
 
 			</div>
 			
 			<!-- add Project -->
 			<div id="nav1"class="row century addproject" >
-				<p style="color:#989898;font-size:16px;margin-left:40px;margin-top:4px">
+				<p style="cursor:pointer;color:#989898;font-size:16px;margin-left:40px;margin-top:4px" ng-click="newProject()">
 					add project <strong>+</strong>
 				</p>
 			</div>

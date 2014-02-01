@@ -35,7 +35,7 @@ myapp.directive('ngFocus', function( $timeout ) {
 
 
 
-myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData,GetTags,GetProjectIDs)
+myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONData,GetTags,GetProjectIDs,GetMembers)
 {
     
     $scope.state=$stateParams;
@@ -43,6 +43,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     $scope.routePID=$stateParams.PID;
     $scope.ListAllTags=GetTags;
     $scope.ListAllProjectIDs=GetProjectIDs;
+    $scope.ListAllMembers=GetMembers;
     
     
 
@@ -111,11 +112,23 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
                 _TID=i;
                 break;
             }
-            console.log(i);
+            // console.log(i);
+
+        var currProject=$location.path();
+        currProject=currProject.substring(1);
+        console.log(currProject);
+        
+        var arr=[];
+        arr=currProject.split("/");
+        currProject=arr[0];
+        // delimit at '/'
+        if(currProject==='/' || currProject==='')
+            currProject=0;
+        console.log(currProject);
 
         $scope.JsonData.push(
         {
-            "PID":1,
+            "PID":currProject,
             "TID":_TID,
             "TN":newTask,
             "TD":newTask+' Task Description ',
@@ -274,6 +287,65 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
             $scope.JsonData[index].assignedTo="Shashvat";
         
     }
+
+    $scope.newProject=function()
+    {
+        
+        //Generate a TID which is not used by any other task
+        //This immitates the server's functionality to ensure unique TIDs
+        var occupiedPIDs = [];
+        for(var i=0;i<$scope.JsonData.length;i++)
+            occupiedPIDs.push($scope.JsonData[i].PID);
+
+        var _PID;
+        
+        for(var i=100;i>=0;i--)
+            if(occupiedPIDs.indexOf(i)==-1)
+            {
+                _PID=i;
+                break;
+            }
+
+        var occupiedTIDs = [];
+        for(var i=0;i<$scope.JsonData.length;i++)
+            occupiedTIDs.push($scope.JsonData[i].TID);
+
+        var _TID;
+        
+        for(var i=100;i>=0;i--)
+            if(occupiedTIDs.indexOf(i)==-1)
+            {
+                _TID=i;
+                break;
+            }
+            
+        console.log(_PID);
+        console.log(_TID);
+        $scope.JsonData.push(
+        {
+            "PID":_PID,
+            "TID":_TID,
+            "TN":"New Task",
+            "TD":+' Task Description ',
+            "TC":"Task Comments",
+            "fol":[1,2,3],
+            "star":1,
+            "DueDate":"2013-1-24", 
+            "tags":["JS","AJAX"],
+            "assignedTo":"Shashvat",
+            "assignedBy":"Shashvat",
+            completed:false
+        });
+        // console.log($location.path());
+
+
+        //Update Model
+        PutJSONData($scope.JsonData);
+        $scope.ListAllProjectIDs.push(_PID);
+    }
+
+
+
 
 });
 
