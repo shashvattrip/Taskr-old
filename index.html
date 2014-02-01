@@ -19,7 +19,7 @@
 	/* set the background-color to red */
 .navbar-inner
 {
-    background-color: #259541;
+    background-color: #259542;
     /* remove the gradient */
     background-image: none;
     /* set font color to white */
@@ -42,7 +42,7 @@
     /* set hover and focus to lightblue */
     .navbar .nav > li > a:focus,
     .navbar .nav > li > a:hover {
-      background-color: lightblue;
+      background-color:#259542;
       color: white;
     }
         /* set active item to darkgreen */
@@ -67,10 +67,12 @@
     	height:40px;
     }
 
+    
+
 	body
 	{
 		margin:0px;
-		/*overflow-y:hidden;*/
+		overflow-y:hidden;
 
 	}
 
@@ -85,21 +87,30 @@
 	}
 
 </style>
+
 <body ng-controller="DataCtrl">
 	
 
 		<!-- UpperNavBar -->
-	<div class="container-fluid" style="width:1366px;height:40px;margin:0px;background-color:#259541;padding:0px;">
+	<div class="container-fluid century" style="width:1366px;height:40px;margin:0px;background-color:#259541;padding:0px;">
 		
 	
 		<div class="navbar" style="margin-bottom:0px;">
-		  	<div class="navbar-inner">
-		    	<a class="brand" href="#">Taskr</a>
-		    	<div class="nav">
-		    		<form ng-submit="" class="form-search">
-  						<input ng-model="search_query_string" type="text" class="input-medium">
+		  	<div class="navbar-inner" style="padding-left:10px">
+		    	<a class="nav" href="#">
+		    		<img src="logo.png"  style="margin-top:8px;margin-left:3px;height:25px;">
+		    	</a>
+
+		    	<div class="nav century" style="margin-top:5px;margin-right:0px;">
+		    		<form class="form-search">
+
+  						<input type="text" placeholder="search" placeholder-color="#ffffff" style="border:0px;font-size:16px;color:#ffffff;" class=" century input-medium ">
   					</form>
 		    	</div>
+
+		    	<a class="nav" href="#">
+		    		<img src="search.png"  style="margin-top:5px;margin-left:0px;height:28px;padding-left:0px;">
+		    	</a>
 		  	</div>
 		</div>
 	</div><!--  UpperNavBar Ends -->
@@ -108,136 +119,257 @@
 	<div class="container-fluid" style="width:1366px;height:600px;background-color:#ffffff;margin:0px;padding:0px;">
 		
 		<!-- Left NavBar -->
-		<div style="left:0px;top:40px;width:290px;float:left;height:100%;margin-left:-268px;margin-right:0px;background-color:#E3E3E3;border-right:2px solid #A4A4A4;">
+		<div style="left:0px;top:30px;width:290px;float:left;height:100%;margin-left:-259px;margin-right:0px;background-color:#E3E3E3;border-right:1px solid #d1d1d1;">
 			
 			<!-- Project Name -->
-			<div class="row" style="background-color:#E3E3E3;margin:0px;height:40px;">
+			<div class="row century" style="background-color:#E3E3E3;margin:0px;height:40px;">
 				<div style="height:40px;width:100%;">
-					<div id="ProjectName" style="color:#259541;float:left;padding-left:8px;line-height:40px;font-size:20px;">
-						.Project 1
+					<div id="ProjectName" >
+						<a class="link"href="#/">
+							<p class="projectmain">Project 1</p>
+						</a>
 					</div>
 					
 					<!-- Place for the arrow -->
-					<div style="width:40px;height:40px;float:right;">
-						<img src="images/1.png">
+					<div class="mainarrow">
+						<a href="#/">
+							<img src="images/1.png">
+						</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="row" style="background-color:#259541;height:4px;width:100%;">
 
+			<div class="row" style="background-color:#259541;height:4px;width:100%; left:0px;">
 			</div>
 
 			<!-- My Tasks + Inbox + Display Pic -->
-			<div class="row" style="width:100%;background-color:#E3E3E3;margin:0px;height:70px;padding-top:4px;">
+			<div class="row century" style="width:100%;background-color:#E3E3E3;margin:0px;height:70px;padding-top:4px;">
 				<div style="height:70px;width:100%;background-color:#ffffff;">
 					
 					<!-- My Tasks -->
-					<div style="background-color:#ffffff;height:32px;width:74%;position:relative;top:5px;left:4px;float:left;padding-left:70px;">
-						<div style="width:100%;margin:0px;"><a href="#/">my tasks</a>
-							<img src="images/2.png" style="float:right;">
+					<div id="nav1"class="mi" >
+						<div style="margin-top:5px;">
+							<a class="link" style="color:#747474" href="#/">
+								my tasks
+								
+							</a>
+							<a class="link" href="#/">
+							<img src="images/2.png" class="img_small">
+							</a>
 						</div>
 						
 					</div>
 
 					<!-- Inbox -->
-					<div style="background-color:#EEEEEE;height:32px;width:74%;position:relative;top:5px;left:4px;float:left;padding-left:70px;">
-						inbox
+					<div id="nav1"class="mi" >
+						<div style="margin-top:5px;">
+							<a class="link" style="color:#747474"href="#">inbox</a>
+							<a class="link" href="#">
+								<img src="images/4.png" class="img_small">
+							</a>
+						</div>
 					</div>
 
 					<!-- Display Picture -->
-					<div style="height:52px;width:50px;background-color:#868686;position:relative;top:9px;left:8px;margin:0px;">
+					<div style="height:52px;width:50px;background-color:#868686;position:relative;top:9px;left:8px;margin:0px;border-radius:4px">
 
 					</div>
 
 				</div>
 			</div>
 
-			<div class="row" style="height:8px;width:100%;background-color:ffffff;">
+
+
+			<div class="row" style="height:12px;width:100%;background-color:#e3e3e3;">
 			</div>
 
 			<!-- Show More -->
-			<div class="row" style="background-color:#EEEEEE;height:92px;width:100%;border-top:solid 2px #A4A4A4;border-bottom:solid 2px #A4A4A4;line-height:32px;font-size:14px;text-align:center;">
+			<!-- <div class="row" style="background-color:#EEEEEE;height:92px;width:100%;border-top:solid 2px #A4A4A4;border-bottom:solid 2px #A4A4A4;line-height:32px;font-size:14px;text-align:center;">
 				<a ng-repeat="project in ListAllProjectIDs" ng-href="#/{{project}}">Project {{project}}<br></a>
-			</div>
-
-			<!-- Blank Space -->
-			<!-- <div class="row" style="background-color:#E3E3E3;height:85px;width:100%;border-bottom:solid 2px #A4A4A4;">
 			</div> -->
 
+			
+
 			<!-- Add People to project -->
-			<div class="row" style="background-color:#EEEEEE;height:80px;width:100%;">
-				<span>add people to project...</span>
-				<br>
-				<input type="text" class="input-medium">
-				<button ng-click="isChecked()">isChecked</button>
+			<div class="row century" style="background-color:#EEEEEE;height:80px;width:100%;border-bottom:solid 1px #cbcbcb">
+	
+					<div style="width:100%">
+						<div style="margin-left:28px;margin-top:6px; color:#8d8d8d;float:left;font-size:16px;margin-bottom:0px;margin-top:8px">
+							<p style="margin-bottom:0px">add people to project</p>
+						</div>
+						<div style="height:30px;float:right; margin-top:6px;margin-right:7px">
+							<a href="#">
+								<img style="height:20px"src="images/3.png" > 
+							</a>
+						</div>
+					</div>
+
+				
+					<input type="text" class="input-medium century" style="color:#989898;margin-left:24px;margin-top:9px;background-color:#ffffff;border:0px solid #ffffff;" placeholder="enter team mate's email id"  >
+					
+					<button ng-click="isChecked()"style="margin-left:5px;margin-top:0px;border-radius:1px;font-size:12px"class="century btn btn-info">Add</button>
 			</div>
 
-			<br>
+			<div class="row" style="height:8px;width:100%;background-color:#e3e3e3;border-bottom:solid 1px #cbcbcb">
+			</div>
+
+
+			
 			<!-- Teammates -->
-			<div class="row" style="background-color:#E3E3E3;height:96px;width:100%;">
-				<div class="row" style="height:32px;background-color:#E4E4E4;border-bottom:solid 1px #A4A4A4;">
-					team mate 1
+			<div class="row century" style="background-color:#E3E3E3;height:96px;width:100%;">
+
+				<div id="nav1"class="row team" style="border-bottom:solid 1px #cbcbcb">
+
+					<div>
+						<a href="#" >
+							<img class="teampic"src="images/pic.png" >
+						</a>
+					</div>
+
+					<div >
+						<p class="teamnamemain">team mate 1</p>
+					</div>
+
 				</div>
-				<div class="row" style="height:32px;background-color:#E4E4E4;border-bottom:solid 1px #A4A4A4;">
-					team mate 1
+				<div id="nav1"class="row team" >
+
+					<div >
+						<a href="#" >
+							<img class="teampic"src="images/pic.png" >
+						</a>
+					</div>
+
+					<div >
+						<p class="teamname">team mate 2</p>
+					</div>
+
 				</div>
-				<div class="row" style="height:32px;background-color:#E4E4E4;border-bottom:solid 1px #A4A4A4;">
-					team mate 1
+
+				<div id="nav1"class="row team" >
+
+					<div>
+						<a href="#" >
+							<img class="teampic" src="images/pic.png" >
+						</a>
+					</div>
+
+					<div >
+						<p class="teamname">team mate 3</p>
+					</div>
+
 				</div>
-				<div class="row" style="height:32px;background-color:#E4E4E4;">
-					more...
-				</div>
+				
 			</div>
 
 			<br>
 			<br>
 			
-			
-			<div class="row" style="background-color:#259541;height:4px;width:100%;">
-			</div>
 
+			<div class="row century" style="background-color:#EEEEEE;height:90px;width:100%;border-top:solid 1px #cbcbcb;border-bottom:solid 1px #cbcbcb;line-height:32px;font-size:14px;">
+				
+				
+
+				<div id="nav1" class="project">
+					<img src="images/right.png" class="project_pic">
+					<a class="link" href="#/1" style="color:#989898;font-size:14px">Project 2</a><br>
+				</div>
+
+				<div id="nav1" class="project">
+					<img src="images/right.png" class="project_pic">
+					<a class="link" href="#/1" style="color:#989898;font-size:14px">Project 3</a><br>
+				</div>
+				
+
+			</div>
+			
 			<!-- add Project -->
-			<div class="row" style="background-color:#EEEEEE;height:36px;width:100%;border-top:solid 1px #A4A4A4;border-bottom:solid 1px #A4A4A4;">
-				add project +
+			<div id="nav1"class="row century addproject" >
+				<p style="color:#989898;font-size:16px;margin-left:40px;margin-top:4px">
+					add project <strong>+</strong>
+				</p>
+			</div>
+
+			<div style="height:50px;width:100%;background-color:#e3e3e3">
+
 			</div>
 
 
 			<!-- leftnav footer -->
-			<div class="row" style="background-color:#259541;height:75px;width:100%;">
-				feedback | contact us | about us
+			<div class="row century" style="background-color:#6abc7f;height:50px;width:100%;text-align:center;padding-top:20px; color:#259542">
+				<a id="nav2"class="link footer" href="#" >
+					feedback
+				</a>
+				
+				|
+				<a  id="nav2"class="link footer" href="#" >
+					about us
+				</a>
+				|
+				<a id="nav2"class="link footer" href="#" >
+					contact us
+				</a>
+				
 			</div>
 
 
 		</div>
 
 		<!-- Center Pane -->
-		<div style="width:586px;margin-left:290px;top:40px;height:584px;margin-right:0px;background-color:#000000;">
+		<div class="century" style="width:586px;margin-left:290px;top:40px;height:600px;margin-right:0px;background-color:#eeeeee;border-right:1px solid #d1d1d1">
 			<!-- username -->
-			<div class="row" style="background-color:#ffffff;margin:0px;height:44px;border-bottom:1px solid #A4A4A4;padding:6px;padding-left:32px;overflow:hidden;font-size:22px;">
+			<div class="row century" style="background-color:#ffffff;margin:0px;height:44px;border-bottom:1px solid #d1d1d1;padding:6px;padding-left:22px;overflow:hidden;font-size:22px;">
+				
 				<!-- Display Picture -->
-				<div style="height:45px;width:45px;background-color:#868686;float:left;">
+				<div style="height:40px;width:40px;background-color:#868686;float:left; ">
 				</div>
 				
 				<!-- username -->
-				<div style="height:44px;line-height:44px;float:left;padding-left:10px;">
-					shashvat tripathi's
+				<div style="color:#747474;height:44px;line-height:44px;float:left;padding-left:10px;">
+					Shashvat Tripathi's
 				</div>
 
-				<div style="height:44px;line-height:44px;float:left;padding-left:10px;">
-					Taskr
+				<div style="color:#747474;height:44px;line-height:44px;float:left;padding-left:10px;">
+					Project1
 				</div>
 
-				<div style="height:44px;line-height:44px;float:left;padding-left:10px;">
+				<div style="color:#747474;height:44px;line-height:44px;float:left;padding-left:10px;">
 					tasks
 				</div>
+
+				<div style="color:#747474;float:right;margin-right:20px;width:35px;margin-top:12px">
+					<img src="images/down.png">
+				</div>
+
 			</div>
 
 			<!-- sort and filter bar -->
-			<div class="row" style="background-color:#EEEEEE;height:30px;border-bottom:1px solid #A4A4A4;">
+			<div class="century container" style="background-color:#E3E3E3;height:25px;border-bottom:1px solid #d1d1d1;">
 			
+				<div  id="nav1"class="mid-nav" style="margin-left:30px">
+					<div style="float:left; margin-top: 2px; margin-left:14px">
+						sort
+					</div>
+					<div style="float:left;">
+						<a href="#" >
+							<img class="teampic" style="height:9px; margin-left:30px;margin-top:8px" src="images/dw.png" >
+						</a>
+					</div>
+				</div>
 
-				<div class="btn-group">
+				<div  id="nav1"class="mid-nav">
+					<div style="float:left; margin-top: 2px; margin-left:14px">
+						filter
+					</div>
+					<div style="float:left;">
+						<a href="#" >
+							<img class="teampic" style="height:9px; margin-left:30px;margin-top:8px" src="images/dw.png" >
+						</a>
+					</div>
+				</div>
+
+
+<!-- 				<div class="btn-group">
 				  	<button class="btn">Filter by tags</button>
 				  	<button class="btn dropdown-toggle" data-toggle="dropdown">
 				    	<span class="caret"></span>
@@ -252,25 +384,33 @@
 					<option value="DueDate">Due Date</option>
 					<option value="-completed">Done First</option>
 					<option value="completed">Not Done</option>
-				</select>
+				</select> -->
 
 			</div>
 
 			<!-- New Task Row -->
-			<div class="row" style="background-color:#E3E3E3;height:30px;border-bottom:1px solid #A4A4A4;">
+			<div class="container century" style="background-color:#eeeeee;height:38px;border-bottom:1px solid #d1d1d1;color:#989898;">
 				
-				<form ng-submit="addTask()">
-					<input id="new-todo" style="width:160px;float:left;" placeholder="What needs to be done?" ng-model="newTask" autofocus>
-
+				<form ng-submit="addTask()"; style="margin-bottom:0px">
+					<p style="margin-left:30px;margin-top:9px; float:left">
+						What need's to be done?
+					</p>
+					<input class="input-large century" id="new-todo" ng-model="newTask"  autofocus style="float:left;color:#989898;margin-left:24px;margin-top:9px;background-color:#ffffff;border:0px solid #ffffff;">
 				</form>
 
-				
+				<div style="float:left;margin-top:8px">
+					<img style="height:15px;margin-left:60px"src="images/pin.png">
+					<img style="height:15px;margin-left:8px"src="images/luv.png">
+					<img style="height:15px;margin-left:8px"src="images/imp.png">
+				</div>
 
 			</div>
 
 			<!-- Dynamically created tasks --> <!-- Pane width:586px -->
-			<div ui-view="ProjectPane" class="row" style="height:420px;background-color:#123456;border-bottom:1px solid #A4A4A4;border-top:2px solid #A4A4A4;overflow:auto;">
-				Loading Tasks...
+			<div ui-view="ProjectPane" class="row" style="height:408px;background-color:#f9f9f9;border-bottom:2px solid #d1d1d1;border-top:0px solid #d1d1d1;overflow:auto; font-size:15px; color:#989898;">
+				<p style="margin-left:30px;margin-top:6px">
+					Loading Tasks...
+				</p>
 				
 				
 
@@ -279,9 +419,8 @@
 		</div>
 
 		<!-- Task Pane -->
-		<div ui-view="TaskPane" style="position:absolute;top:40px;left:876px;width:488px;height:558px;;margin:0px;background-color:#6BBD7F;border-left:2px solid #A4A4A4;">
-				
-				
+		<div ui-view="TaskPane" style="position:absolute;top:40px;left:876px;width:488px;height:600px;;margin:0px;background-color:#6abc7f;border-left:1px solid #d1d1d1;">
+			
 		</div>
 
 	</div>

@@ -1,76 +1,136 @@
+<!-- {{JsonData[index].TID}}.Name -->
 <!-- Dynamically injected -->
-<div ng-init="index=getIndexOf(routeTID)" style="height:400px;background-color:#EEEEEE;border-top:8px solid #A4A4A4;" >
+<div ng-init="index=getIndexOf(routeTID)" style="height:400px;background-color:#EEEEEE;border-top:8px solid #f4f3f3;" >
 					
 	<!-- nav1 -->
-	<div class="row" style="background-color:#E3E3E3;height:24px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;">
-		<div style="background-color:red;width:120px;height:100%;float:left;">
-			{{JsonData[index].TID}}.Name
+	<div class="century container" style="background-color:#ffffff;height:35px;border-bottom:1px solid #d1d1d1;border-top:1px solid #d1d1d1;width:488px">
+
+		<div  id="nav1" class="right-nav">
+			<div style="float:left;">
+				<a href="#" >
+					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/pic.png" >
+				</a>
+			</div>
+			<div  style="float:left; margin-top: 5px; margin-left:14px">
+				shashvat
+			</div>
+			
 		</div>
-		<div style="background-color:blue;width:120px;height:100%;float:left;margin-left:4px;">
-			{{JsonData[index].DueDate}}
+
+		<div  id="nav1" class="right-nav">
+			<div style="float:left;">
+				<a href="#" >
+					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/time.png" >
+				</a>
+			</div>
+			<div style="float:left; margin-top: 5px; margin-left:14px">
+				due date
+			</div>
+			
 		</div>
-		
-		<div style="background-color:blue;width:40px;height:100%;float:left;margin-left:4px;">
-			Heart
+
+		<div style="float:left;margin-top:7px">
+			<img style="height:15px;margin-left:20px"src="images/pin.png">
+			<img style="height:15px;margin-left:14px"src="images/luv.png">
+			<img style="height:15px;margin-left:14px"src="images/imp.png">
+			<img style="height:15px;margin-left:60px"src="images/lock.png">
 		</div>
-		<div style="background-color:blue;width:40px;height:100%;float:left;margin-left:4px;">
-			Print Task
-		</div>
-		<div style="background-color:blue;width:100px;height:100%;float:left;margin-left:4px;">
-			<div style="cursor:pointer;" ng-click="removeTask(JsonData[index])">Delete Task</div>
-		</div>
-	</div>
+	</div>	
+			<!-- nav1 ends -->
 
 	<!-- Task Details-1 -->
-	<div class="row" style="background-color:#ffffff;height:100px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;">
-	
-		<span ng-hide="JsonData[index].editingProjectName" ng-click="startEditing(JsonData[index],'projectName')">{{JsonData[index].PID}}
-		</span>
+	<div class="row century" style="background-color:#ffffff;height:180px;border-bottom:1px solid #d1d1d1;padding:4px;overflow:hidden;">
+		<p style="margin-left:40px;margin-top:10px;font-size:20px;color:#747474;margin-bottom:0px">Project {{JsonData[index].PID}}</p>
+
+		<p style="margin-left:50px;margin-top:4px;font-size:10px;color:#747474;margin-bottom:0px">
+			<strong>TaskID :</strong> {{routeTID}} <input type="checkbox" ng-model="JsonData[index].completed">
+		</p>
+
+
+		<div class="container"style="margin-left:50px;margin-top:5px;margin-bottom:0px;font-size:15px;color:#747474">
+			<div style="margin-bottom:0px;float:left">
+				<strong>Task :</strong>
+			</div>
 			
-		<form ng-submit="doneEditing(JsonData[index],'projectName')" ng-show="JsonData[index].editingProjectName">
-			<input ng-blur="doneEditing(JsonData[index],'projectName')" ng-focus="JsonData[index]==editedProjectName" ng-model="JsonData[index].PID" class="input-large">
-		</form>
+			<div style="margin-bottom:11px;float:left;margin-left:42px"> 
+				<span class="container"style="padding-top:5px;margin-bottom:3px"class=" century"ng-hide="JsonData[index].editing" ng-click="startEditing(JsonData[index])">{{JsonData[index].TN}}
+				</span>
+			</div>
 		
-		<input type="checkbox" ng-model="JsonData[index].completed">
-		
-		
-		<p>Task Name : 
-			<span ng-hide="JsonData[index].editingTaskName" ng-click="startEditing(JsonData[index],'taskName')">{{JsonData[index].TN}}
-			</span>
-			
-			<form style="float:right;" ng-submit="doneEditing(JsonData[index],'taskName')" ng-show="JsonData[index].editingTaskName">
-				<input ng-blur="doneEditing(JsonData[index],'taskName')" ng-focus="JsonData[index]==editedTaskName" ng-model="JsonData[index].TN" class="input-large">
+			<form style="margin-left:0px;margin-top:0px;margin-bottom:5px; float:left;"ng-submit="doneEditing(JsonData[index])" ng-show="JsonData[index].editing">
+				<input ng-blur="doneEditing(JsonData[index])" ng-focus="JsonData[index]==editedTask" ng-model="JsonData[index].TN" class=" century input-large">
 			</form>
-		</p>		
+		</div>
+
+		<div class="container century">
+			<div style="margin-left:50px;float:left;font-size:12px;color:#747474;margin-top:4px"><strong>Description :</strong>
+			</div>
+			<form style="margin-left:10px;float:left">
+				<input class="century" style="font-size:12px;color:white;width:300px;background-color:#77D28E;border:1px solid #77D28E;" type="text" ng-model="JsonData[index].TD">
+			</form>
+		</div>
 	</div>
 
-	<!-- Something Fishy here, try commenting out Description and watch how Comments comes back into picture -->
-	<!-- Description -->
-	<div class="row" style="background-color:#E3E3E3;height:230px;border-bottom:1px solid #A4A4A4;border-top:1px solid #A4A4A4;padding:4px;overflow:hidden;color:blue;">
-		<input type="text" style="width:95%;" ng-model="JsonData[index].TD">
-		<!-- Tags -->
-		<div style="width:95%;height:35px;background-color:red;">
-			<p style="float:left;">Tags<span style="font-size:8px;">(click on * to delete)</span> : </p>
-			
-			<div ng-repeat="tag in JsonData[index].tags" style="margin-left:4px;float:left;height:32px;width:35px;background-color:white;">
-				{{tag}}-<div ng-click="removeTag(index,tag)" style="color:red;cursor:pointer;">*</div>
-			</div>
-			Add Tag
-			<form ng-submit="addTag(index)">
-				<input type="text" style="width:60px;" ng-model="newTag">
-			</form>
-			
+	<!-- Comments -->
+	<div class="row century" style="background-color:#E3E3E3;height:100px;border-bottom:1px solid #d1d1d1;border-top:0px solid #d1d1d1;padding:4px;overflow:hidden;color:#747474;">
+		<div style="margin-left:20px">
+			<img style="width:20px"src="images/comment.png">
+
+			post a comment
+		</div>	
+		<form style="margin-left:20px;float:left;margin-top:10px">
+			<input class="century"style="background-color:#ffffff;border:1px solid #ffffff;font-size:12px;color:#77d28e;width:300px"type="text" ng-model="JsonData[index].TD">
+		</form>
+		
+	</div>
+
+	<!-- Followers -->
+	<div class="container century" style="width:480px;background-color:#ffffff;height:30px;border-bottom:1px solid #d1d1d1;border-top:0px solid #d1d1d1;padding:4px;overflow:hidden;">
+		<div style="float:left">	
+			<img src="images/ppl.png" style="width:20px">
+		</div>	
+
+		<div style="width:80px;float:left;margin-left:10px;color:#747474">Followers | </div>
+
+		<div style="float:left;margin-right:10px;color:#747474" ng-repeat="follower in JsonData[index].fol">{{follower}}
 		</div>
-		<!-- Followers -->
-		<div style="width:95%;height:35px;background-color:red;">
-			<p style="float:left;">followers : </p>
-			
-			<div ng-repeat="follower in JsonData[index].fol" style="margin-left:4px;float:left;height:32px;width:35px;background-color:white;">
-				{{follower}}
-			</div>
+		<div style="float:left;margin-left:30px">	
+			<img src="images/add.png" style="width:20px">
 		</div>
 	</div>
-	
-	
-	
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,11 +1,12 @@
-
-
-
 <!-- individual task -->
-<div id="TaskRow{{task.TID}}" ng-repeat="task in filtered=( JsonData| tagFilter:selectedTags )|filter:search_filter|  orderBy:sortOrder | filter:{PID:routePID}" class="animate-repeat row IndividualTaskRow">
+<div id="nav1" id="TaskRow{{task.TID}}" ng-repeat="task in filtered=( JsonData| tagFilter:selectedTags )|filter:search_filter|  orderBy:sortOrder | filter:{PID:routePID}" class="row IndividualTaskRow">
 	
-	<div class="IndividualTaskRowTID">
-		{{task.TID}}--{{sortOrder}}
+	<div class="century IndividualTaskRowTID">
+		{{task.TID}}
+	</div>
+
+	<div style="width:15px;float:left;margin-left:5px;margin-top:3px">
+		<img src="images/clock.png">
 	</div>
 
 	<div class="IndividualTaskRowCheckBox">
@@ -13,15 +14,15 @@
 
 	</div>
 
-	<div class="IndividualTaskRowInput">
+	<div class="century IndividualTaskRowInput" style="margin-top:3px">
 		<span style="float:left;" ng-hide="task.editingTaskName" ng-click="startEditing(task,'taskName')">{{task.TN}}</span>
 		
-		<!-- 13 is keyCode for return key -->
-		<form ng-submit="doneEditing(task,'taskName')" ng-show="task.editingTaskName">
-			<input ng-blur="doneEditing(task,'taskName')" ng-focus="task==editedTaskName" ng-model="task.TN" class="input-large">
+		
+		<form ng-submit="doneEditing(task,'taskName')" ng-show="task.editingTaskName" style="width:300px;margin-bottom:0px">
+			<input ng-blur="doneEditing(task,'taskName')" ng-focus="task==editedTaskName" ng-model="task.TN" class="century input-large" style="float:left;color:#ffffff;background-color:#77d28e;border:0px solid #d1d1d1;">
 
 		</form>
-		<!-- <a style="float:right;" href="#/{{routePID}}/task/{{task.TID}}"><button class="btn btn-info">Details</button></a> -->
+		
 	</div>
 
 </div>
