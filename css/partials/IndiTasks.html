@@ -17,7 +17,7 @@
 			
 		</div>
 
-		<div  id="nav1" class="right-nav">
+		<div  id="nav1" class="right-nav" ng-click="openDatePicker(JsonData[index])" style="cursor:pointer;">
 			<div style="float:left;">
 				<a href="#" >
 					<img class="teampic" style="height:19px; margin-left:10px;margin-top:7px" src="images/time.png" >
@@ -25,13 +25,15 @@
 			</div>
 			<div style="float:left; margin-top: 5px; margin-left:14px">
 				due date
+				<input data-date-format="dd-mm-yyyy" value="{{JsonData[index].DueDate}}" type="text" style="height:2px;width:2px;padding:0px;margin:-40px;" class="customDatePicker">
+				 
 			</div>
 			
 		</div>
 
 		<div style="float:left;margin-top:7px">
 			<img style="height:15px;margin-left:20px"src="images/pin.png">
-			<img style="height:15px;margin-left:14px"src="images/luv.png">
+			<img ng-click="heartTask(JsonData[index])" style="cursor:pointer;height:15px;margin-left:14px"src="images/luv.png">
 			<img style="height:15px;margin-left:14px"src="images/imp.png">
 			<img style="height:15px;margin-left:14px"src="images/lock.png">
 			<img ng-click="removeTask(JsonData[index])" style="height:15px;margin-left:46px"src="images/lock.png">
@@ -73,17 +75,22 @@
 		</div>
 	</div>
 
-	<!-- Comments -->
-	<div class="row century" style="background-color:#E3E3E3;height:100px;border-bottom:1px solid #d1d1d1;border-top:0px solid #d1d1d1;padding:4px;overflow:hidden;color:#747474;">
+	<!-- Comments --> <!-- Give max-height  -->
+	<div class="row century" style="max-height:300px;background-color:#E3E3E3;border-bottom:1px solid #d1d1d1;border-top:0px solid #d1d1d1;padding:4px;overflow:hidden;color:#747474;overflow:auto;">
 		<div style="margin-left:20px">
 			<img style="width:20px"src="images/comment.png">
 
 			post a comment
 		</div>	
-		<form style="margin-left:20px;float:left;margin-top:10px">
-			<input class="century"style="background-color:#ffffff;border:1px solid #ffffff;font-size:12px;color:#77d28e;width:300px"type="text">
-		</form>
 		
+		<form ng-submit="addComment(JsonData[index])" style="margin-left:20px;float:left;margin-top:10px">
+			<input class="century"style="background-color:#ffffff;border:1px solid #ffffff;font-size:12px;color:#77d28e;width:300px" type="text" ng-model="comment">
+		</form>
+		<br>
+		<br>
+		<p ng-repeat="comment in JsonData[index].Comments">{{comment}}</p>
+
+
 	</div>
 
 	<!-- Followers -->
@@ -100,5 +107,6 @@
 			<img src="images/add.png" style="width:20px" ng-click="addFollower(JsonData[index])">
 		</div>
 	</div>
+	
 </div>
 

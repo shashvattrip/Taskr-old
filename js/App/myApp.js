@@ -45,9 +45,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     $scope.ListAllProjectIDs=GetProjectIDs;
     $scope.ListAllMembers=GetMembers;
     
-    
 
-    
 
 
     
@@ -125,17 +123,17 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
         if(currProject==='/' || currProject==='')
             currProject=0;
         console.log(currProject);
-
+        currProject=parseInt(currProject);
         $scope.JsonData.push(
         {
             "PID":currProject,
             "TID":_TID,
             "TN":newTask,
             "TD":newTask+' Task Description ',
-            "TC":"Task1C",
+            "Comments":[],
             "fol":[1,2,3,4,5],
-            "star":1,
-            "DueDate":"2013-1-24", 
+            "star":0,
+            "DueDate":"22-1-2014",
             "tags":["JS","AJAX"],
             "assignedTo":"Shashvat",
             "assignedBy":"Shashvat",
@@ -298,6 +296,7 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
             occupiedPIDs.push($scope.JsonData[i].PID);
 
         var _PID;
+        console.log(occupiedPIDs);
         
         for(var i=100;i>=0;i--)
             if(occupiedPIDs.indexOf(i)==-1)
@@ -318,8 +317,10 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
                 _TID=i;
                 break;
             }
-            
+    
+        console.log("New PID");            
         console.log(_PID);
+        console.log("New TID");            
         console.log(_TID);
         $scope.JsonData.push(
         {
@@ -327,9 +328,10 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
             "TID":_TID,
             "TN":"New Task",
             "TD":+' Task Description ',
-            "TC":"Task Comments",
+            // "TC":"Task Comments",
+            "Comments":[],
             "fol":[1,2,3],
-            "star":1,
+            "star":0,
             "DueDate":"2013-1-24", 
             "tags":["JS","AJAX"],
             "assignedTo":"Shashvat",
@@ -342,10 +344,89 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
         //Update Model
         PutJSONData($scope.JsonData);
         $scope.ListAllProjectIDs.push(_PID);
+        console.log("ListAllPIDs");
+        console.log($scope.ListAllProjectIDs);
     }
 
+    $scope.addComment=function(task)
+    {
+        var newComment = $scope.comment.trim();
+        console.log($scope.comment);
+        if (!newComment.length) 
+        {
+            return;
+        }
+        console.log(task);
+        console.log(task.Comments);
+        task.Comments.push(newComment);
+        $scope.comment='';
+    }
+
+    $scope.heartTask=function(task)
+    {
+        if(task.star==1)
+            task.star=0;
+        else
+            task.star=1;
+        console.log(task);
+    }
+
+    $scope.openDatePicker=function(task)
+    {
+        var nowTemp = new Date();
+        //get current DateTime
+
+        // Eg : now = Sun Feb 02 2014 21:59:16 GMT+0530 (India Standard Time)
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0); 
+        $(".customDatePicker").datepicker('show');
+        
+        // var selectedDate;
+        
+        // http://www.eyecon.ro/bootstrap-datepicker/
+        $(".customDatePicker").on('changeDate',function(ev)
+        {
+            console.log("onchangeDate event handler");
+            var temp=ev.date;
+            // console.log(temp);
+            // task.DueDate=ev.date;
+            // console.log("DueDate inside Event Handler");
+            // console.log(temp);
+            var str=temp.toString().split(" ");
+            console.log(str);
+            // console.log(str[1]);
+            switch(str[1])
+            {
+                case "Jan":str[1]=1;break;
+                case "Feb":str[1]=2;break;
+                case "Mar":str[1]=3;break;
+                case "Apr":str[1]=4;break;
+                case "May":str[1]=5;break;
+                case "Jun":str[1]=6;break;
+                case "Jul":str[1]=7;break;
+                case "Aug":str[1]=8;break;
+                case "Sep":str[1]=9;break;
+                case "Oct":str[1]=10;break;
+                case "Nov":str[1]=11;break;
+                case "Dec":str[1]=12;break;
+            };
 
 
+            task.DueDate=str[2] + '-' + str[1] + '-' + str[3];
+            console.log(task.DueDate);
+            PutJSONData($scope.JsonData);
+            // task.DueDate={
+            //     "day":,"month":,"year":
+            // };    
+        });
+
+        
+     
+    }
+
+    $scope.testing123=function(task)
+    {
+        $('.customDatePicker').datepicker('setValue',"22-3-1992");
+    }
 
 });
 

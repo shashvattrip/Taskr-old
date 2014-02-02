@@ -9,9 +9,8 @@
 	<script src="js/App/angular-animate.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/checkbox/style.css">
-	
-	
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
+	<script type="text/javascript" src="js/App/modules/bootstrap-datepicker.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<!-- <link rel="stylesheet" type="text/css" href="css/animations.css"> -->
 </head>
@@ -246,7 +245,7 @@
 				
 				
 
-				<div id="nav1" class="project" ng-repeat="project in ListAllProjectIDs">
+				<div id="nav1" class="project" ng-repeat="project in ListAllProjectIDs" ng-hide="project==0">
 					<img src="images/right.png" class="project_pic">
 					<a class="link" ng-href="#/{{project}}" style="color:#989898;font-size:14px">Project {{project}}</a><br>
 				</div>
@@ -400,5 +399,6 @@
 	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/App/myApp.js"></script>
 	<script type="text/javascript" src="js/App/services/eventData.js"></script>
+
 </body>
 </html>
