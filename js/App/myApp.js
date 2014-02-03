@@ -4,7 +4,7 @@
 // Add Tags on Individual Tasks
 // Add Filter based on Tags
 
-var myapp=angular.module('myapp',['ui.state']);
+var myapp=angular.module('myapp',['ngRoute','ui.router']);
 
 
 
@@ -237,13 +237,13 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
 
     //Functions to get the filter by tag functionality working
 
-    $scope.selectedTags=['JS'];
+    $scope.selectedTags=[];
 
     $scope.isChecked = function(tag) 
     {
         // console.log('$scope.selectedTags.indexOf(tag)');
         // console.log($scope.selectedTags.indexOf(tag));
-        console.log($scope.selectedTags);
+        // console.log($scope.selectedTags);
         if($scope.selectedTags.indexOf(tag)>-1)
         // if($scope.ListAllTags[$scope.ListAllTags.(indexOf(tag))].filter==false)
         {
@@ -256,8 +256,11 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
     {
         // console.log(tag);
         if($scope.selectedTags.indexOf(tag)==-1)
-        
+        {
             $scope.selectedTags.push(tag);
+            console.log($scope.selectedTags);
+        }
+            
             
         else if($scope.selectedTags.indexOf(tag)>-1)
         
@@ -423,40 +426,38 @@ myapp.controller('DataCtrl',function($scope,$http,$stateParams,$location,JSONDat
      
     }
 
-    $scope.testing123=function(task)
+    $scope.SearchAllProjects=function()
     {
-        $('.customDatePicker').datepicker('setValue',"22-3-1992");
+        $location.path('/');
     }
+
 
 });
 
 
-
-myapp.filter('tagFilter',function()
-{
-    return function(Data,selectedTags)
-    {
-        // console.log('selectedTags array');
-        // console.log(selectedTags);
-        if(selectedTags.length==0)
-        {   
-            // console.log('Nothing changed');
-            return Data;
-        }
-        else
-        {
-            tempData=[];
-            Data.forEach(function(task)
-            {
-                // console.log(task);
-            });
-            return Data;
-        }
+myapp.filter('tagFilter', function() {
+  return function(Data, selectedTags) {
+    console.log('selectedTags array');
+    console.log(selectedTags);
+    if (selectedTags.length === 0) {
+      return Data;
+    } else {
+      tempData = [];
+      for(var k in selectedTags) {
+              var value = selectedTags[k];
+              for(var i  in Data) {
+                  for(var z in Data[i].tags) {
+                      if(value==Data[i].tags[z]) {
+                         tempData.push(Data[i]);
+                         break;
+                      } 
+                  }
+              }
+            }
+            return tempData;
     }
+  };
 });
-
-
-
 
 
 myapp.config(function($stateProvider,$urlRouterProvider,$routeProvider)
@@ -467,6 +468,26 @@ myapp.config(function($stateProvider,$urlRouterProvider,$routeProvider)
    
 
   $stateProvider
+
+  .state('route2',
+    {
+        url:"/calendar",
+        views:
+        {
+            "ProjectPane":
+            {
+                templateUrl:"css/partials/calendar.html",
+                controller:"DataCtrl"        
+            },
+            "TaskPane":
+            {
+                templateUrl:"css/partials/emptyIndi.html"
+            }
+        }
+        
+      
+    })
+    
     .state('route1',
     {
         url:"/:PID",
@@ -476,12 +497,14 @@ myapp.config(function($stateProvider,$urlRouterProvider,$routeProvider)
             {
             templateUrl:"css/partials/Tasks.html",
             controller:"DataCtrl"
-            }            
+            }, 
+            "TaskPane":
+            {
+                templateUrl:"css/partials/emptyIndi.html"
+            }
         }
       
     })
-
-
 
         // .state('route1.task',
             .state('route1.task',
@@ -499,6 +522,8 @@ myapp.config(function($stateProvider,$urlRouterProvider,$routeProvider)
                 }
                 
             })
+
+    
 
 
 });

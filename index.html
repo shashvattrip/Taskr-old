@@ -7,10 +7,15 @@
 	<script src="js/App/angular-ui-router.js"></script>
 	<!--<script src="js/App/modules/keypress/keypress.js"></script> -->
 	<script src="js/App/angular-animate.min.js"></script>
+	<script type="text/javascript" src="js/App/angular-route.js"></script>
+
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-datepicker.css">
 	<script type="text/javascript" src="js/App/modules/bootstrap-datepicker.js"></script>
+	
+	
+	
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<!-- <link rel="stylesheet" type="text/css" href="css/animations.css"> -->
 </head>
@@ -103,15 +108,22 @@
 		    	</a>
 
 		    	<div class="nav century" style="margin-top:5px;margin-right:0px;">
-		    		<form class="form-search">
+		    		<form class="form-search" ng-submit="SearchAllProjects()">
 
-  						<input type="text" placeholder="search" placeholder-color="#ffffff" style="border:0px;font-size:16px;color:#ffffff;" class=" century input-medium ">
+  						<input id="IDsearchString" type="text" placeholder="search" placeholder-color="#ffffff" style="border:0px;font-size:16px;color:#ffffff;" class=" century input-medium " ng-model="SearchString">
   					</form>
 		    	</div>
 
 		    	<a class="nav" href="#">
 		    		<img src="search.png"  style="margin-top:5px;margin-left:0px;height:28px;padding-left:0px;">
 		    	</a>
+		    	<a class="nav" href="" style="color:white;">
+		    		Hit enter to search all the projects!
+		    	</a>
+		    	<a class="nav" ng-href="#/calendar" style="color:white;">
+		    		view calendar!
+		    	</a>
+		  	</div>
 		  	</div>
 		</div>
 	</div><!--  UpperNavBar Ends -->
@@ -126,7 +138,7 @@
 			<div class="row century" style="background-color:#E3E3E3;margin:0px;height:40px;">
 				<div style="height:40px;width:100%;">
 					<div id="ProjectName" >
-						<a class="link"href="">
+						<a class="link" href="">
 							<p class="projectmain">Project 1 <span ng-model="selectedProject"></span></p>
 						</a>
 					</div>
@@ -324,6 +336,22 @@
 							<img class="teampic" style="height:9px; margin-left:30px;margin-top:8px" src="images/dw.png" >
 						</a>
 					</div>
+					<div class="btn-group">
+						<button class="btn">Filter by tags</button>
+	 				  	<button class="btn dropdown-toggle" data-toggle="dropdown">
+	 				    	<span class="caret"></span>
+	 				  	</button>
+	 				  	<ul class="dropdown-menu">
+	 				    	<li ng-repeat="tag in ListAllTags"><a ng-click="SetSelectedTags(tag)">{{tag}}<span ng-class="isChecked(tag)"></span></a></li>
+	 				  	</ul>
+ 					</div>
+					<!-- <select ng-model="sortOrder" class="input-small">
+						<option value="TID">TID</option>
+						<option value="PID">PID</option>
+						<option value="DueDate">Due Date</option>
+						<option value="-completed">Done First</option>
+						<option value="completed">Not Done</option>
+					</select> -->
 				</div>
 
 				<div  id="nav1"class="mid-nav">
